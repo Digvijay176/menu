@@ -4,7 +4,7 @@
 <title>Sweet Crumbs — Digital Menu</title>
 <meta name="description" content="Home-made cakes, cookies and desserts. Scan, browse the menu in English, Hindi or Marathi, and order on WhatsApp.">
 <link rel="preconnect" href="https://docs.google.com"><link rel="dns-prefetch" href="https://drive.google.com"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Inter:wght@400;500;600&family=Noto+Sans+Devanagari:wght@400;500;700&family=Noto+Serif+Devanagari:wght@600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Inter:wght@400;500;600&family=Noto+Sans+Devanagari:wght@400;500;700&family=Noto+Serif+Devanagari:wght@600;800&display=swap"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Inter:wght@400;500;600&family=Noto+Sans+Devanagari:wght@400;500;700&family=Noto+Serif+Devanagari:wght@600;800&display=swap"></noscript>
 <style>
 :root{--bg:#fbf5ee;--sf:#fff;--fg:#3b2418;--mut:#8a6f60;--ln:#eadbcc;--ac:#c2415d;--acf:#fff;--sh:0 8px 30px rgba(80,40,20,.08);--hd:'Fraunces','Noto Serif Devanagari',Georgia,serif;--bd:'Inter','Noto Sans Devanagari',system-ui,sans-serif;color-scheme:light dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1a1210;--sf:#251a16;--fg:#f6e9dc;--mut:#b49a8a;--ln:#3a2a23;--ac:#ff7a93;--acf:#2a0d14;--sh:0 8px 30px rgba(0,0,0,.35)}}
@@ -118,6 +118,7 @@ mark{background:color-mix(in srgb,var(--ac) 24%,transparent);color:inherit;borde
 .sz b{margin:0;color:var(--ac);font-weight:600}.sz[aria-pressed=true]{border-color:var(--ac);background:color-mix(in srgb,var(--ac) 10%,var(--sf))}.sz.one{pointer-events:none}
 .od{display:flex;align-items:center;justify-content:center;gap:8px;min-height:46px;margin-top:4px;border-radius:14px;background:#25d366;color:#04230f;font-weight:600;text-decoration:none;transition:transform .15s}.od:active{transform:scale(.97)}
 .v-list .sz{min-height:34px;padding:5px 11px;font-size:13px}.v-list .od{order:5;align-self:flex-start;min-height:38px;padding:0 16px;margin-top:6px;font-size:14px}
+.im img{opacity:0;transition:opacity .4s,transform .8s cubic-bezier(.2,.7,.2,1)}.im img.ld{opacity:1}
 /* qr */
 #qr{position:fixed;inset:0;z-index:70;background:rgba(20,10,6,.6);display:none;align-items:center;justify-content:center;padding:20px}
 #qr .cd{background:var(--sf);border-radius:28px;padding:28px;max-width:360px;width:100%;text-align:center;animation:pop .4s cubic-bezier(.2,.9,.3,1.2)}@keyframes pop{from{transform:scale(.85);opacity:0}}
@@ -228,7 +229,7 @@ function art(i,n){const p=i.p;let b=PL;
  return sv(b)}
 function render(){const t=tr(),q=$('#q').value.trim();$('#menu').className='v-'+view;$('.hero').style.display=q?'none':'';$('.sw').classList.toggle('has',!!q);
  const h=CATS.map(c=>{const its=ITEMS.filter(i=>i.c==c&&hit(i));
-  return its.length?`<section class="cat" id="s-${c}"><h2>${t[c]||esc(c)}<small>${its.length} ${t.items}</small></h2><div class="gr">${its.map(i=>{const n=ITEMS.indexOf(i);return`<article class="it" data-n="${n}"><div class="im" style="--h:${hu(c)}">${imgUrl(i.img)?`<img src="${esc(imgUrl(i.img))}" alt="${esc(i.n[L])}" loading="lazy" decoding="async" referrerpolicy="no-referrer" data-n="${n}">`:art(i,n)}</div><div class="cn"><div class="hd"><h3>${hl(i.n[L])}</h3><span class="fr">${t.from.replace('{p}',SHOP.cur+Math.min(...i.v.map(v=>v[1])))}</span></div><div class="ov"><div class="tg">${i.t.map(x=>`<i class="${x=='eggless'?'eg':''}">${t[x]||esc(x)}</i>`).join('')}</div><p>${esc(i.d[L])}</p>${acts(i,n)}</div></div></article>`}).join('')}</div></section>`:''}).join('');
+  return its.length?`<section class="cat" id="s-${c}"><h2>${t[c]||esc(c)}<small>${its.length} ${t.items}</small></h2><div class="gr">${its.map(i=>{const n=ITEMS.indexOf(i);return`<article class="it" data-n="${n}"><div class="im" style="--h:${hu(c)}">${imgUrl(i.img)?`<img src="${esc(imgUrl(i.img))}" alt="${esc(i.n[L])}" ${n<4?'fetchpriority="high"':'loading="lazy"'} decoding="async" referrerpolicy="no-referrer" data-n="${n}">`:art(i,n)}</div><div class="cn"><div class="hd"><h3>${hl(i.n[L])}</h3><span class="fr">${t.from.replace('{p}',SHOP.cur+Math.min(...i.v.map(v=>v[1])))}</span></div><div class="ov"><div class="tg">${i.t.map(x=>`<i class="${x=='eggless'?'eg':''}">${t[x]||esc(x)}</i>`).join('')}</div><p>${esc(i.d[L])}</p>${acts(i,n)}</div></div></article>`}).join('')}</div></section>`:''}).join('');
  if(!h&&state=='ld'){$('#menu').innerHTML='<div class="sk" aria-busy="true" aria-label="'+t.ld+'">'+'<div class="skc"><i></i><b></b><b></b></div>'.repeat(6)+'</div>';$('#rs').innerHTML='';chips();return}
  $('#menu').innerHTML=h||`<div class="none">${state?t[state]:t.none+'<small>'+t.nh+'</small><button class="bt" id="clr">'+t.clear+'</button>'}${state=='lf'&&location.search.includes('debug')?'<br><small>'+esc(dbg)+'</small>':''}</div>`;$$('.it').forEach(e=>io.observe(e));$$('.cat').forEach(e=>spy.observe(e));
  const n=ITEMS.filter(hit).length;$('#rs').innerHTML=(q||eg)&&n?`<span>${t.rn.replace('{n}',n).replace('{m}',ITEMS.length)}</span><button id="clr">${t.clear}</button>`:'';
@@ -241,6 +242,7 @@ $('#ch').addEventListener('scroll',fade,{passive:true});addEventListener('resize
 addEventListener('scroll',()=>{if(!lock&&scrollY<=120&&cur!='all'){cur='all';mark()}},{passive:true});
 new ResizeObserver(()=>document.documentElement.style.setProperty('--hh',$('header').offsetHeight+'px')).observe($('header'));
 $('#menu').addEventListener('click',e=>{const a=e.target.closest('.it');if(a&&matchMedia('(hover:none)').matches){$$('.it.open').forEach(x=>x!=a&&x.classList.remove('open'));a.classList.toggle('open')}});
+addEventListener('load',e=>{if(e.target.tagName=='IMG')e.target.classList.add('ld')},true);
 /* if a photo fails to load, fall back to the illustration */
 addEventListener('error',e=>{const m=e.target;if(m.tagName=='IMG'&&m.dataset.n){const w=document.createElement('div');w.innerHTML=art(ITEMS[+m.dataset.n],+m.dataset.n);m.replaceWith(w.firstChild)}},true);
 /* splash */
@@ -297,6 +299,7 @@ async function sync(){try{
  if(key===sig)return;
  apply(tb,key);try{localStorage.setItem('mc',key)}catch(e){}}
  catch(e){console.warn('Sheet sync failed',e);dbg=String(e.message||e);if(state=='ld'){state='lf';render()}}}
-if(LIVE){try{const c=localStorage.getItem('mc');if(c)apply(JSON.parse(c),c)}catch(e){}}
+const SNAP=null; /* optional: paste the output of copy(localStorage.mc) here instead of null, so even first-time visitors see the menu instantly */
+if(LIVE){try{const c=localStorage.getItem('mc')||(SNAP&&JSON.stringify(SNAP));if(c)apply(JSON.parse(c),c)}catch(e){}}
 if(LIVE||SOURCES.settings||SOURCES.theme){sync();setInterval(sync,Math.max(15,SOURCES.refreshSec)*1000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)sync()})}
 </script></body></html>

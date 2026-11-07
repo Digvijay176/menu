@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sweet Crumbs — Digital Menu</title>
+<meta name="description" content="Home-made cakes, cookies and desserts. Scan, browse the menu in English, Hindi or Marathi, and order on WhatsApp.">
+<link rel="preconnect" href="https://docs.google.com"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Inter:wght@400;500;600&family=Noto+Sans+Devanagari:wght@400;500;700&family=Noto+Serif+Devanagari:wght@600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fbf5ee;--sf:#fff;--fg:#3b2418;--mut:#8a6f60;--ln:#eadbcc;--ac:#c2415d;--acf:#fff;--sh:0 8px 30px rgba(80,40,20,.08);--hd:'Fraunces','Noto Serif Devanagari',Georgia,serif;--bd:'Inter','Noto Sans Devanagari',system-ui,sans-serif;color-scheme:light dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1a1210;--sf:#251a16;--fg:#f6e9dc;--mut:#b49a8a;--ln:#3a2a23;--ac:#ff7a93;--acf:#2a0d14;--sh:0 8px 30px rgba(0,0,0,.35)}}
+:root[data-theme="dark"]{--bg:#1a1210;--sf:#251a16;--fg:#f6e9dc;--mut:#b49a8a;--ln:#3a2a23;--ac:#ff7a93;--acf:#2a0d14;--sh:0 8px 30px rgba(0,0,0,.35)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*,*::before,*::after{box-sizing:inherit;margin:0}
+body{background:var(--bg);color:var(--fg);font:400 16px/1.55 var(--bd);-webkit-font-smoothing:antialiased;padding-bottom:90px}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+h1,h2,h3{font-family:var(--hd);line-height:1.15}
+/* splash */
+#sp{position:fixed;inset:0;z-index:60;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:32px 24px;transition:transform .8s cubic-bezier(.7,0,.2,1)}
+#sp.out{transform:translateY(-100%)}
+#sp .em{font-size:64px;animation:fl 3s ease-in-out infinite}@keyframes fl{50%{transform:translateY(-10px) rotate(4deg)}}
+#sp h1{font-size:clamp(40px,10vw,76px);margin:12px 0 8px;font-weight:800}#sp p{color:var(--mut);max-width:360px}
+.lg{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:32px 0 20px}
+.lg button{padding:12px 22px;border:1.5px solid var(--ln);border-radius:99px;background:var(--sf);font-weight:500;transition:.2s}.lg button[aria-pressed=true]{background:var(--ac);color:var(--acf);border-color:var(--ac)}
+.go{background:var(--fg);color:var(--bg);padding:16px 38px;border-radius:99px;font-weight:600;font-size:16px;transition:transform .2s}.go:active{transform:scale(.96)}
+#sp small{margin-top:26px;color:var(--mut);font-size:12px}
+/* header */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--ln)}
+.hr{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;max-width:900px;margin:auto}
+.br{font:800 20px var(--hd)}.br span{color:var(--ac)}
+.hr .rt{display:flex;gap:8px;align-items:center}
+.sg{display:flex;border:1.5px solid var(--ln);border-radius:99px;overflow:hidden;background:var(--sf)}.sg button{padding:6px 11px;font-size:13px;font-weight:500}.sg button[aria-pressed=true]{background:var(--fg);color:var(--bg)}
+.qb{width:38px;height:38px;border-radius:50%;background:var(--ac);color:var(--acf);display:grid;place-items:center}.qb svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.tb{max-width:900px;margin:auto;padding:0 16px 12px}
+.sr{display:flex;gap:8px;align-items:stretch;margin-bottom:10px}.sr .sg{flex:none}.sr .sg button{padding:0 14px}#q{flex:1;min-width:0;padding:12px 16px;border-radius:14px;border:1.5px solid var(--ln);background:var(--sf);color:var(--fg);font:inherit}
+.chs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}.chs::-webkit-scrollbar{display:none}
+.chs button{flex:none;padding:8px 16px;border-radius:99px;border:1.5px solid var(--ln);background:var(--sf);font-size:14px;font-weight:500;white-space:nowrap;transition:.2s}.chs button[aria-pressed=true],.chs button.on{background:var(--ac);border-color:var(--ac);color:var(--acf)}
+/* menu */
+main{max-width:940px;margin:auto;padding:8px 16px}
+.hero{padding:26px 0 8px}.hero h2{font-size:clamp(30px,6vw,46px)}.hero p{color:var(--mut);margin-top:8px}
+.cat{padding-top:28px;scroll-margin-top:170px}.cat>h2{font-size:28px;display:flex;align-items:center;gap:10px;margin-bottom:16px}.cat>h2::after{content:"";flex:1;height:1px;background:var(--ln)}
+.gr{display:grid;gap:18px;grid-template-columns:repeat(auto-fill,minmax(min(100%,270px),1fr))}
+.it{background:var(--sf);border:1px solid var(--ln);border-radius:22px;overflow:hidden;box-shadow:var(--sh);opacity:0;transform:translateY(16px);transition:opacity .6s,transform .6s}.it.on{opacity:1;transform:none}
+.im{aspect-ratio:4/3;overflow:hidden;background:radial-gradient(circle at 30% 25%,hsl(var(--h) 80% 91%),hsl(var(--h) 65% 78%))}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .im{background:radial-gradient(circle at 30% 25%,hsl(var(--h) 40% 30%),hsl(var(--h) 35% 18%))}}
+:root[data-theme="dark"] .im{background:radial-gradient(circle at 30% 25%,hsl(var(--h) 40% 30%),hsl(var(--h) 35% 18%))}
+.im svg,.im img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}.it:hover .im>*{transform:scale(1.06)}
+.bd{padding:16px 18px 18px}.bd h3{font-size:20px}.bd p{color:var(--mut);font-size:14px;margin:6px 0 0}
+.tg{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.tg i{font:600 11px var(--bd);font-style:normal;padding:2px 9px;border-radius:99px;background:color-mix(in srgb,var(--ac) 14%,transparent);color:var(--ac)}.tg i.eg{background:#2e9e5b22;color:#2e9e5b}
+.pr{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.pr span{padding:6px 13px;border-radius:99px;border:1px solid var(--ln);font-size:14px;color:var(--mut)}.pr b{color:var(--ac);font-weight:600;margin-left:6px}
+.none{text-align:center;color:var(--mut);padding:60px 0}
+.ft{margin-top:44px;padding:26px 0;border-top:1px solid var(--ln);color:var(--mut);font-size:14px;display:grid;gap:6px}.ft b{color:var(--fg)}.ft a{color:var(--ac)}
+#wa{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:40;background:#25d366;color:#04230f;padding:14px 20px;border-radius:99px;font-weight:600;font-size:15px;text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,.25);transition:transform .2s}#wa:hover{transform:translateY(-3px)}
+.it{position:relative}.it:focus-visible{outline:2px solid var(--ac)}
+.hd{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:14px 16px}.hd h3{font-size:18px}.fr{color:var(--ac);font-weight:600;font-size:14px;white-space:nowrap}
+.v-card .ov{position:absolute;left:0;right:0;top:0;aspect-ratio:4/3;background:rgba(24,12,8,.86);color:#fff;padding:16px;display:flex;flex-direction:column;justify-content:center;gap:8px;opacity:0;transition:opacity .35s;overflow:auto}
+.v-card .it:hover .ov,.v-card .it:focus-within .ov,.v-card .it.open .ov{opacity:1}
+.v-card .ov p{color:#f1e4d8;margin:0}.v-card .ov .tg{margin:0}.v-card .ov .tg i{background:rgba(255,255,255,.16);color:#fff}.v-card .ov .tg i.eg{background:rgba(46,158,91,.35);color:#bff0d2}.v-card .ov .pr{margin-top:4px}.v-card .ov .pr span{border-color:rgba(255,255,255,.35);color:#fff}.v-card .ov .pr b{color:#ffb3c1}
+.v-list .gr{grid-template-columns:1fr}.v-list .it{display:flex;gap:16px;padding:14px;align-items:flex-start}.v-list .im{width:112px;flex:none;aspect-ratio:1;border-radius:16px}.v-list .cn{flex:1;min-width:0}.v-list .hd{padding:0}.v-list .fr{display:none}.v-list .ov p{margin:4px 0 0;color:var(--mut);font-size:14px}.v-list .ov .tg{margin-top:6px}
+@media(max-width:480px){.v-list .im{width:92px}}
+/* qr */
+#qr{position:fixed;inset:0;z-index:70;background:rgba(20,10,6,.6);display:none;align-items:center;justify-content:center;padding:20px}
+#qr .cd{background:var(--sf);border-radius:28px;padding:28px;max-width:360px;width:100%;text-align:center;animation:pop .4s cubic-bezier(.2,.9,.3,1.2)}@keyframes pop{from{transform:scale(.85);opacity:0}}
+#qr h2{font-size:26px}#qr p{color:var(--mut);font-size:14px;margin:6px 0 18px}
+#qc{background:#fff;padding:14px;border-radius:18px;display:inline-block;line-height:0;border:1px solid var(--ln)}#qc img,#qc canvas{max-width:100%;height:auto}
+.ac{display:flex;gap:8px;margin-top:18px;justify-content:center;flex-wrap:wrap}.ac button{padding:10px 18px;border-radius:99px;border:1.5px solid var(--ln);font-weight:500;font-size:14px}.ac .p{background:var(--ac);border-color:var(--ac);color:var(--acf)}
+@media print{body>*{display:none!important}body>#qr{display:flex!important;position:static;background:#fff;color:#000}#qr .cd{box-shadow:none;animation:none}.ac{display:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.it{opacity:1;transform:none}}
+/* language dropdown */
+.lw{position:relative}.lb{display:flex;align-items:center;gap:6px;padding:8px 12px;border:1.5px solid var(--ln);border-radius:99px;background:var(--sf);font-size:13px;font-weight:500;white-space:nowrap}.lb svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.lb .cv{width:12px;height:12px;transition:transform .2s}.lb[aria-expanded=true] .cv{transform:rotate(180deg)}
+.lm{position:absolute;right:0;top:calc(100% + 8px);min-width:160px;background:var(--sf);border:1px solid var(--ln);border-radius:16px;box-shadow:var(--sh);padding:6px;display:none;z-index:50}.lm.open{display:block}
+.lm button{display:flex;justify-content:space-between;align-items:center;width:100%;padding:10px 12px;border-radius:10px;font-size:14px;text-align:left}.lm button:hover{background:color-mix(in srgb,var(--ac) 8%,transparent)}.lm button[aria-checked=true]{background:color-mix(in srgb,var(--ac) 14%,transparent);color:var(--ac);font-weight:600}
+/* card / list toggle */
+.sr .sg button{display:flex;align-items:center;gap:6px;padding:0 12px;transition:background .2s,color .2s}.sr .sg svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+@media(max-width:480px){.sr .sg button{padding:0 11px}.sr .sg button span{display:none}}
+/* loading skeleton */
+.it.sk{opacity:1;transform:none}:root .it.sk .im{background:linear-gradient(90deg,var(--ln),color-mix(in srgb,var(--ln) 35%,var(--sf)),var(--ln));background-size:200% 100%;animation:sh 1.3s linear infinite}@keyframes sh{to{background-position:-200% 0}}.sl{display:block;height:16px;border-radius:8px;background:var(--ln)}.w60{width:60%}.w25{width:25%}
+/* qr link */
+.ql{display:block;margin-top:14px;font-size:13px;color:var(--ac);word-break:break-all;text-decoration:none}
+</style></head>
+<body>
+<div id="sp"><div class="em" aria-hidden="true">🎂</div><h1 id="sb"></h1><p id="st"></p><div class="lg" id="slg" role="group" aria-label="Language"></div><button class="go" id="go"></button><small id="sn"></small></div>
+<header><div class="hr"><div class="br" id="hb"></div><div class="rt"><div class="lw"><button class="lb" id="lb" aria-haspopup="menu" aria-expanded="false"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><span id="lbt"></span><svg class="cv" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button><div class="lm" id="lm" role="menu"></div></div><button class="qb" id="qo" aria-label="QR code"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h3M20 17v4"/></svg></button></div></div>
+<div class="tb"><div class="sr"><input id="q" type="search" autocomplete="off"><div class="sg" id="vw" role="group" aria-label="View"></div></div><div class="chs" id="ch"></div></div></header>
+<main><div class="hero"><h2 id="h2"></h2><p id="hp"></p></div><div id="menu"></div><div class="ft" id="ft"></div></main>
+<a id="wa" target="_blank" rel="noopener"></a>
+<div id="qr" role="dialog" aria-modal="true"><div class="cd"><h2 id="qh"></h2><p id="qp"></p><div id="qc"></div><a class="ql" id="ql" target="_blank" rel="noopener"></a><div class="ac"><button class="p" id="qdl"></button><button id="qpr"></button><button id="qcp"></button><button id="qx"></button></div></div></div>
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+/* ============ EDIT YOUR BUSINESS DETAILS & MENU HERE ============
+ Shop name, contact, hours, address and every dish are below, each with English (en), Hindi (hi) and Marathi (mr) text.
+ Prices are in rupees; v = sizes/portions as [label, price]. Items marked sample are placeholders. */
+/* ===== GOOGLE SHEET CONNECTION =====
+ Your sheet is connected by its ID. The sheet must be shared as "Anyone with the link → Viewer".
+ Works with a normal Google Sheet and with an uploaded .xlsx opened in Google Sheets. Tab names must match "tabs".
+ menu / settings / theme / palettes = optional "Publish to web → CSV" links, used instead of sheetId if filled. refreshSec = re-read interval. */
+const SOURCES={
+ sheetId:"1_zBv9NA_rhhkJTNjlRuFAavB-jwiz0Hg2l7ErwWZfAA", /* docs.google.com/spreadsheets/d/<ID>/edit */
+ tabs:{menu:"Menu",settings:"Settings",theme:"Theme",palettes:"Palettes"},
+ file:"", /* optional: link to an .xlsx file (e.g. menu-data.xlsx uploaded next to this page) - used if the Google link is blocked */
+ menu:"",settings:"",theme:"",palettes:"",
+ refreshSec:60};
+const SITE_URL="https://digvijay176.github.io/menu/"; /* link used in the QR code, Copy link and Download QR */
+const SHOP={name:{en:"Sweet Crumbs",hi:"स्वीट क्रम्ब्स",mr:"स्वीट क्रम्ब्स"},whatsapp:"910000000000",phone:"+91 00000 00000",instagram:"",
+ hours:{en:"Daily 10 am – 8 pm",hi:"रोज़ सुबह 10 – रात 8 बजे",mr:"रोज सकाळी १० – रात्री ८"},
+ address:{en:"Your address, City",hi:"आपका पता, शहर",mr:"तुमचा पत्ता, शहर"},cur:"₹"};
+const LANGS=[["en","English"],["hi","हिन्दी"],["mr","मराठी"]];
+let CATS=["cakes","cookies","desserts"];const HUE={cakes:340,cookies:32,desserts:285};
+let ITEMS=[
+/* img: optional Google Drive share link, photo URL or file path. Leave "" to use the built-in illustration. */
+{c:"cakes",img:"",k:"cake",p:["#4a2616","#7a4a30","#2a120a","choc"],t:["best"],n:{en:"Chocolate Truffle Cake",hi:"चॉकलेट ट्रफल केक",mr:"चॉकलेट ट्रफल केक"},d:{en:"Rich dark chocolate sponge layered with silky ganache.",hi:"गहरे चॉकलेट स्पंज की परतें और मखमली गनाश।",mr:"गडद चॉकलेट स्पंजचे थर आणि मखमली गनाश."},v:[["½ kg",650],["1 kg",1200]]},
+{c:"cakes",img:"",k:"cake",p:["#b3202f","#fff3ea","#fff3ea","rv"],t:["eggless"],n:{en:"Red Velvet Cake",hi:"रेड वेलवेट केक",mr:"रेड वेल्वेट केक"},d:{en:"Soft crimson layers with cream cheese frosting.",hi:"नरम लाल परतें और क्रीम चीज़ फ्रॉस्टिंग।",mr:"मऊ लाल थर आणि क्रीम चीज फ्रॉस्टिंग."},v:[["½ kg",750],["1 kg",1400]]},
+{c:"cakes",img:"",k:"cake",p:["#f6dfa0","#ffffff","#fff7ea","pine"],t:["eggless"],n:{en:"Pineapple Cake",hi:"अनानास केक",mr:"अननस केक"},d:{en:"Light vanilla sponge with fresh whipped cream and pineapple.",hi:"हल्का वैनिला स्पंज, ताज़ी व्हिप्ड क्रीम और अनानास।",mr:"हलका व्हॅनिला स्पंज, ताजी व्हिप्ड क्रीम आणि अननस."},v:[["½ kg",550],["1 kg",1000]]},
+{c:"cakes",img:"",k:"cake",p:["#3d2012","#ffffff","#fdf3ea","cherry"],t:["new"],n:{en:"Black Forest Cake",hi:"ब्लैक फॉरेस्ट केक",mr:"ब्लॅक फॉरेस्ट केक"},d:{en:"Chocolate sponge, cherries and cream, finished with shavings.",hi:"चॉकलेट स्पंज, चेरी और क्रीम, ऊपर चॉकलेट के टुकड़े।",mr:"चॉकलेट स्पंज, चेरी आणि क्रीम, वर चॉकलेटचे काप."},v:[["½ kg",650],["1 kg",1200]]},
+{c:"cookies",img:"",k:"cookie",p:["#d9a566","#3b2012","chip"],t:["best","eggless"],n:{en:"Choco Chip Cookies",hi:"चॉको चिप कुकीज़",mr:"चॉको चिप कुकीज"},d:{en:"Crisp edges, soft centres, generous chocolate chunks.",hi:"कुरकुरे किनारे, नरम बीच और ढेर सारे चॉकलेट टुकड़े।",mr:"कुरकुरीत कडा, मऊ मध्य आणि भरपूर चॉकलेटचे तुकडे."},v:[["Box of 6",240],["Box of 12",450]]},
+{c:"cookies",img:"",k:"cookie",p:["#ebc78c","#c99a5b","butter"],t:["eggless"],n:{en:"Butter Cookies",hi:"बटर कुकीज़",mr:"बटर कुकीज"},d:{en:"Melt-in-the-mouth cookies baked with pure butter.",hi:"शुद्ध मक्खन में बनी, मुँह में घुल जाने वाली कुकीज़।",mr:"शुद्ध लोण्यात बनवलेल्या, तोंडात विरघळणाऱ्या कुकीज."},v:[["250 g",220],["500 g",420]]},
+{c:"cookies",img:"",k:"cookie",p:["#cf9a5e","#8e3b6e","oat"],t:["new"],n:{en:"Oats & Raisin Cookies",hi:"ओट्स और किशमिश कुकीज़",mr:"ओट्स आणि मनुका कुकीज"},d:{en:"Wholesome oats, plump raisins and a hint of cinnamon.",hi:"पौष्टिक ओट्स, रसीली किशमिश और दालचीनी की खुशबू।",mr:"पौष्टिक ओट्स, रसाळ मनुका आणि दालचिनीचा सुगंध."},v:[["Box of 6",260]]},
+{c:"desserts",img:"",k:"lava",p:[],t:["best"],n:{en:"Choco Lava Cake",hi:"चॉको लावा केक",mr:"चॉको लावा केक"},d:{en:"Warm cake with a molten chocolate centre.",hi:"गरमागरम केक, अंदर पिघला हुआ चॉकलेट।",mr:"गरमागरम केक, आत वितळलेले चॉकलेट."},v:[["1 pc",120],["Box of 4",440]]},
+{c:"desserts",img:"",k:"brownie",p:[],t:["eggless"],n:{en:"Fudgy Brownie",hi:"फज ब्राउनी",mr:"फजी ब्राउनी"},d:{en:"Dense, gooey brownie with walnuts. Add ice cream on request.",hi:"घनी, मुलायम ब्राउनी अखरोट के साथ। मांगने पर आइसक्रीम।",mr:"घट्ट, मऊ ब्राउनी अक्रोडसह. हवी असल्यास आइस्क्रीम."},v:[["1 pc",90],["Box of 6",500]]},
+{c:"desserts",img:"",k:"cup",p:[["#3b2012","#f3e3c3","#7a4a30","#f3e3c3"],"cocoa"],t:[],n:{en:"Tiramisu Cup",hi:"तिरामिसु कप",mr:"तिरामिसु कप"},d:{en:"Coffee-soaked layers with mascarpone cream and cocoa.",hi:"कॉफ़ी में भीगी परतें, मस्कारपोन क्रीम और कोको।",mr:"कॉफीत भिजवलेले थर, मस्कारपोन क्रीम आणि कोको."},v:[["1 cup",180]]},
+{c:"desserts",img:"",k:"cup",p:[["#f5b942","#fde39a","#f5b942","#fff1c1"],"mango"],t:["new","eggless"],n:{en:"Mango Mousse Cup",hi:"मैंगो मूस कप",mr:"मँगो मूस कप"},d:{en:"Light, airy mousse made with ripe mango pulp.",hi:"पके आम के गूदे से बना हल्का, मुलायम मूस।",mr:"पिकलेल्या आंब्याच्या गरापासून बनवलेला हलका मूस."},v:[["1 cup",150]]}];
+const T={
+en:{ld:"Loading menu…",lf:"Couldn’t load the menu. Please refresh.",vcard:"Cards",vlist:"List",from:"from {p}",view:"View menu",pick:"Choose your language",tag:"Home-made cakes, cookies & desserts",hello:"Fresh from our home kitchen",sub:"Baked in small batches with real butter, fresh cream and love.",scan:"Opened by scanning a QR code",search:"Search the menu…",all:"All",cakes:"Cakes",cookies:"Cookies",desserts:"Desserts",eggless:"Eggless",best:"Bestseller",new:"New",items:"items",order:"Order on WhatsApp",none:"Nothing matches your search.",wa:"Hello! I’d like to place an order.",total:"Total",qh:"Scan to view our menu",qp:"Point your phone camera at the code to open the menu.",print:"Print",copy:"Copy link",copied:"Copied!",dl:"Download QR",lang:"Language",close:"Close",hrs:"Hours",call:"Call",note:"Our kitchen uses milk, wheat, nuts and eggs. Please tell us about any allergies when you order."},
+hi:{ld:"मेन्यू लोड हो रहा है…",lf:"मेन्यू लोड नहीं हो सका। कृपया रीफ़्रेश करें।",vcard:"कार्ड",vlist:"सूची",from:"{p} से शुरू",view:"मेन्यू देखें",pick:"अपनी भाषा चुनें",tag:"घर पर बने केक, कुकीज़ और डेज़र्ट",hello:"हमारी घरेलू रसोई से ताज़ा",sub:"असली मक्खन, ताज़ी क्रीम और प्यार से छोटे बैच में बने।",scan:"QR कोड स्कैन करके खोला गया",search:"मेन्यू में खोजें…",all:"सभी",cakes:"केक",cookies:"कुकीज़",desserts:"डेज़र्ट",eggless:"अंडारहित",best:"बेस्टसेलर",new:"नया",items:"आइटम",order:"WhatsApp पर ऑर्डर करें",none:"आपकी खोज से कुछ नहीं मिला।",wa:"नमस्ते! मैं ऑर्डर देना चाहता/चाहती हूँ।",total:"कुल",qh:"मेन्यू देखने के लिए स्कैन करें",qp:"मेन्यू खोलने के लिए फ़ोन कैमरा कोड पर रखें।",print:"प्रिंट",copy:"लिंक कॉपी करें",copied:"कॉपी हो गया!",dl:"QR डाउनलोड करें",lang:"भाषा",close:"बंद करें",hrs:"समय",call:"फ़ोन",note:"हमारी रसोई में दूध, गेहूँ, मेवे और अंडे का उपयोग होता है। ऑर्डर करते समय किसी भी एलर्जी के बारे में बताएँ।"},
+mr:{ld:"मेनू लोड होत आहे…",lf:"मेनू लोड झाला नाही. कृपया रिफ्रेश करा.",vcard:"कार्ड",vlist:"यादी",from:"{p} पासून",view:"मेनू पहा",pick:"तुमची भाषा निवडा",tag:"घरगुती केक, कुकीज आणि डेझर्ट",hello:"आमच्या घरच्या स्वयंपाकघरातून ताजे",sub:"खरे लोणी, ताजी क्रीम आणि प्रेमाने छोट्या बॅचमध्ये बनवलेले.",scan:"QR कोड स्कॅन करून उघडले",search:"मेनूमध्ये शोधा…",all:"सर्व",cakes:"केक",cookies:"कुकीज",desserts:"डेझर्ट",eggless:"अंडेविरहित",best:"बेस्टसेलर",new:"नवीन",items:"आयटम",order:"WhatsApp वर ऑर्डर करा",none:"तुमच्या शोधाशी काहीही जुळले नाही.",wa:"नमस्कार! मला ऑर्डर द्यायची आहे.",total:"एकूण",qh:"मेनू पाहण्यासाठी स्कॅन करा",qp:"मेनू उघडण्यासाठी फोन कॅमेरा कोडकडे धरा.",print:"प्रिंट",copy:"लिंक कॉपी करा",copied:"कॉपी झाले!",dl:"QR डाउनलोड करा",lang:"भाषा",close:"बंद करा",hrs:"वेळ",call:"फोन",note:"आमच्या स्वयंपाकघरात दूध, गहू, सुकामेवा आणि अंडी वापरतात. ऑर्डर देताना कोणत्याही ॲलर्जीबद्दल सांगा."}};
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let L='en',eg=false,view='card';try{view=localStorage.getItem('view')==='list'?'list':'card'}catch(e){}
+try{const s=localStorage.getItem('lang');if(s&&T[s])L=s;else{const n=(navigator.language||'en').slice(0,2);if(T[n])L=n}}catch(e){}
+const tr=()=>T[L];
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{rootMargin:'0px 0px -6% 0px'});
+const spy=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const id=e.target.id.slice(2);$$('#ch [data-c]').forEach(b=>{const on=b.dataset.c==id;b.classList.toggle('on',on);if(on){const h=$('#ch');h.scrollTo({left:b.offsetLeft-h.clientWidth/2+b.clientWidth/2,behavior:'smooth'})}})}}),{rootMargin:'-40% 0px -55% 0px'});
+addEventListener('scroll',()=>{if(scrollY<120)$$('#ch [data-c]').forEach(b=>b.classList.toggle('on',b.dataset.c=='all'))},{passive:true});
+
+function langBtns(el){if(!el)return;el.innerHTML=LANGS.map(l=>`<button data-l="${l[0]}" aria-pressed="${l[0]==L}" lang="${l[0]}">${l[1]}</button>`).join('');$$('button',el).forEach(b=>b.onclick=()=>setLang(b.dataset.l))}
+function langMenu(){const m=$('#lm');$('#lbt').textContent=LANGS.find(l=>l[0]==L)[1];$('#lb').setAttribute('aria-label',tr().lang);m.innerHTML=LANGS.map(l=>`<button role="menuitemradio" aria-checked="${l[0]==L}" data-l="${l[0]}" lang="${l[0]}"><span>${l[1]}</span><span>${l[0]==L?'✓':''}</span></button>`).join('');$$('button',m).forEach(b=>b.onclick=()=>{m.classList.remove('open');$('#lb').setAttribute('aria-expanded','false');setLang(b.dataset.l)})}
+$('#lb').onclick=e=>{e.stopPropagation();const o=$('#lm').classList.toggle('open');$('#lb').setAttribute('aria-expanded',o)};
+document.addEventListener('click',()=>{$('#lm').classList.remove('open');$('#lb').setAttribute('aria-expanded','false')});
+function setLang(l){L=l;try{localStorage.setItem('lang',l)}catch(e){}ui();render()}
+function viewBtns(){$('#vw').innerHTML=['card','list'].map(v=>`<button data-v="${v}" aria-pressed="${v==view}" aria-label="${tr()['v'+v]}" title="${tr()['v'+v]}">${VIC[v]}<span>${tr()['v'+v]}</span></button>`).join('');$$('#vw button').forEach(b=>b.onclick=()=>{view=b.dataset.v;try{localStorage.setItem('view',view)}catch(e){}viewBtns();render()})}
+function ui(){const t=tr();document.documentElement.lang=L;document.title=`${SHOP.name[L]} — ${t.tag}`;
+ /* splash texts only exist until the splash is closed */
+ [['#sb',SHOP.name[L]],['#st',t.tag],['#go',t.view],['#sn',t.scan]].forEach(([i,v])=>{const e=$(i);if(e)e.textContent=v});
+ $('#hb').innerHTML=`${esc(SHOP.name[L])}<span>.</span>`;$('#q').placeholder=t.search;$('#q').setAttribute('aria-label',t.search);
+ $('#h2').textContent=t.hello;$('#hp').textContent=t.sub;langBtns($('#slg'));langMenu();viewBtns();
+ $('#ch').innerHTML=[`<button data-c="all" class="on">${t.all}</button>`,...CATS.map(c=>`<button data-c="${esc(c)}">${esc(cl(c))}</button>`),`<button id="eg" aria-pressed="${eg}">🌱 ${t.eggless}</button>`].join('');
+ $$('#ch [data-c]').forEach(b=>b.onclick=()=>{$$('#ch [data-c]').forEach(x=>x.classList.toggle('on',x===b));const c=b.dataset.c,el=c=='all'?document.body:$('#s-'+c);if(el)(c=='all'?scrollTo({top:0,behavior:'smooth'}):el.scrollIntoView({behavior:'smooth'}))});
+ $('#eg').onclick=()=>{eg=!eg;ui();render()};
+ $('#ft').innerHTML=`<div><b>${esc(SHOP.name[L])}</b></div><div>${t.hrs}: ${esc(SHOP.hours[L])}</div><div>${esc(SHOP.address[L])}</div><div>${t.call}: <a href="tel:${esc(SHOP.phone.replace(/\s/g,''))}">${esc(SHOP.phone)}</a></div><div style="margin-top:8px;font-size:13px">${t.note}</div>`;
+ $('#qh').textContent=t.qh;$('#qp').textContent=t.qp;$('#qdl').textContent='⬇ '+t.dl;$('#qpr').textContent=t.print;$('#qcp').textContent=t.copy;$('#qx').textContent=t.close;const w=$('#wa');w.textContent='💬 '+t.order;w.href=`https://wa.me/${SHOP.whatsapp}?text=${encodeURIComponent(t.wa)}`}
+const CATLAB={},KNOWN=['cakes','cookies','desserts'],cl=c=>KNOWN.includes(c)?tr()[c]:(CATLAB[c]||c),
+VIC={card:'<svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></svg>',list:'<svg viewBox="0 0 24 24"><path d="M9 6h12M9 12h12M9 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg>'},
+SKEL=()=>`<div class="cat"><div class="gr">${'<div class="it sk"><div class="im"></div><div class="cn"><div class="hd"><span class="sl w60"></span><span class="sl w25"></span></div></div></div>'.repeat(6)}</div></div>`;
+const hu=c=>HUE[c]??([...c].reduce((a,x)=>a+x.charCodeAt(0)*37,0)%360);
+/* Google Drive share links (…/file/d/ID/view, open?id=ID, uc?id=ID) become direct picture links; any other http(s) link or file path is used as is. */
+const imgUrl=u=>{u=(u||'').trim();if(!u)return'';const m=u.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:[^#]*&)?id=|thumbnail\?(?:[^#]*&)?id=)([\w-]{10,})/)||u.match(/docs\.google\.com\/.*?\/d\/([\w-]{10,})/);return m?`https://drive.google.com/thumbnail?id=${m[1]}&sz=w1000`:u};
+const sv=b=>`<svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${b}</svg>`;
+const PL='<ellipse cx="200" cy="252" rx="150" ry="20" fill="#000" opacity=".12"/><ellipse cx="200" cy="244" rx="150" ry="20" fill="#fff"/><ellipse cx="200" cy="240" rx="120" ry="14" fill="#f3ece4"/>';
+const TOP={cherry:'<g fill="#3a1c10"><rect x="150" y="104" width="16" height="5" rx="2" transform="rotate(-20 158 106)"/><rect x="236" y="106" width="16" height="5" rx="2" transform="rotate(25 244 108)"/><rect x="176" y="126" width="14" height="5" rx="2" transform="rotate(10 183 128)"/><rect x="214" y="124" width="14" height="5" rx="2" transform="rotate(-15 221 126)"/></g><circle cx="200" cy="100" r="13" fill="#c8102e"/><circle cx="196" cy="96" r="4" fill="#fff" opacity=".5"/><path d="M200 88q8-16 22-18" stroke="#3a7d2c" stroke-width="3" fill="none"/>',
+pine:'<g fill="#f7c948"><circle cx="150" cy="112" r="15"/><circle cx="250" cy="112" r="15"/><circle cx="200" cy="128" r="15"/></g><g fill="#fff7ea"><circle cx="150" cy="112" r="5"/><circle cx="250" cy="112" r="5"/><circle cx="200" cy="128" r="5"/></g><circle cx="200" cy="98" r="11" fill="#c8102e"/>',
+choc:'<g fill="#2a120a"><rect x="150" y="104" width="22" height="7" rx="3" transform="rotate(-25 160 108)"/><rect x="190" y="96" width="24" height="7" rx="3" transform="rotate(10 200 100)"/><rect x="232" y="106" width="22" height="7" rx="3" transform="rotate(30 242 110)"/><rect x="172" y="124" width="20" height="6" rx="3" transform="rotate(-8 182 127)"/><rect x="214" y="124" width="20" height="6" rx="3" transform="rotate(18 224 127)"/></g>',
+rv:'<g fill="#9c1b2c"><circle cx="160" cy="112" r="6"/><circle cx="182" cy="100" r="5"/><circle cx="205" cy="108" r="7"/><circle cx="232" cy="100" r="5"/><circle cx="246" cy="116" r="6"/><circle cx="212" cy="126" r="5"/><circle cx="176" cy="126" r="5"/></g>'};
+function art(i,n){const p=i.p;let b=PL;
+ if(i.k=='cake'){const[c1,c2,c3,t]=p;b+=`<rect x="110" y="118" width="180" height="120" rx="12" fill="${c1}"/><rect x="110" y="152" width="180" height="14" fill="${c2}"/><rect x="110" y="192" width="180" height="14" fill="${c2}"/><path d="M106 118h188v12q-9 14-18 0q-9 34-22 0q-9 22-20 0q-9 40-24 0q-9 18-20 0q-9 30-22 0q-9 14-18 0q-9 18-18 0q-9 12-26 0z" fill="${c3}"/><ellipse cx="200" cy="118" rx="94" ry="22" fill="${c3}"/><ellipse cx="200" cy="114" rx="70" ry="13" fill="#fff" opacity=".2"/>${TOP[t]||''}`}
+ else if(i.k=='cookie'){const[c,d,t]=p;[[135,175,66],[262,160,60],[196,205,70]].forEach(([x,y,r],j)=>{b+=`<circle cx="${x}" cy="${y+6}" r="${r}" fill="#000" opacity=".12"/><circle cx="${x}" cy="${y}" r="${r}" fill="${c}"/><circle cx="${x}" cy="${y}" r="${r-4}" fill="none" stroke="#fff" stroke-opacity=".25" stroke-width="3"/>`;
+  if(t=='butter'){for(let k=0;k<12;k++){const a=k/12*6.283;b+=`<circle cx="${x+Math.cos(a)*(r-8)}" cy="${y+Math.sin(a)*(r-8)}" r="5" fill="${d}" opacity=".5"/>`}b+=`<circle cx="${x}" cy="${y}" r="${r*.35}" fill="${d}" opacity=".45"/>`}
+  else for(let k=0;k<8;k++){const a=k*.85+j,q=r*(.2+((k*37+j*11)%55)/100),X=x+Math.cos(a)*q,Y=y+Math.sin(a)*q;b+=t=='chip'?`<rect x="${X-5}" y="${Y-4}" width="11" height="8" rx="2" fill="${d}" transform="rotate(${k*40} ${X} ${Y})"/>`:`<circle cx="${X}" cy="${Y}" r="${k%2?5.5:3}" fill="${k%2?d:'#f3dcae'}"/>`}})}
+ else if(i.k=='brownie'){b+='<rect x="112" y="156" width="176" height="82" rx="10" fill="#2e180f"/><rect x="112" y="156" width="176" height="30" rx="10" fill="#4a2a1b"/><rect x="132" y="104" width="150" height="86" rx="10" fill="#2a150d" transform="rotate(-6 207 147)"/><rect x="132" y="104" width="150" height="32" rx="10" fill="#4f2e1d" transform="rotate(-6 207 147)"/><path d="M150 124l30 6 20-8 24 10M210 150l20 10" stroke="#fff" stroke-opacity=".25" stroke-width="3" fill="none"/><path d="M168 104q10-14 24-6q8 12-6 20q-14 4-18-14z" fill="#c99a5b"/><path d="M230 116q10-12 22-4q7 11-5 18q-13 3-17-14z" fill="#b98746"/><circle cx="300" cy="224" r="7" fill="#c8102e"/>'}
+ else if(i.k=='lava'){b+='<ellipse cx="200" cy="232" rx="76" ry="12" fill="#2a120a"/><path d="M138 150h124l-12 80q-2 10-14 10h-72q-12 0-14-10z" fill="#f4eee6" stroke="#e1d6c9" stroke-width="3"/><path d="M130 158q0-62 70-62t70 62z" fill="#4a2616"/><ellipse cx="200" cy="104" rx="30" ry="9" fill="#2a120a"/><path d="M186 106q-6 30 4 52q-14 2-16 18q22 6 52 0q-4-14-16-18q10-22 4-52z" fill="#2a120a"/><g fill="#fff" opacity=".85"><circle cx="160" cy="124" r="2.5"/><circle cx="238" cy="118" r="2.5"/><circle cx="176" cy="108" r="2"/><circle cx="224" cy="110" r="2"/></g><circle cx="262" cy="214" r="8" fill="#c8102e"/>'}
+ else{const[ls,t]=p;b+=`<clipPath id="g${n}"><path d="M130 110h140l-16 130q-2 8-10 8h-88q-8 0-10-8z"/></clipPath><g clip-path="url(#g${n})">${ls.map((c,j)=>`<rect x="120" y="${248-(j+1)*34.5}" width="160" height="35" fill="${c}"/>`).join('')}</g><path d="M130 110h140l-16 130q-2 8-10 8h-88q-8 0-10-8z" fill="none" stroke="#fff" stroke-width="4" stroke-opacity=".8"/><path d="M142 124l10 100" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".35"/>`+(t=='cocoa'?'<ellipse cx="200" cy="110" rx="70" ry="7" fill="#5a3322"/><g fill="#2a120a"><circle cx="170" cy="108" r="2"/><circle cx="210" cy="112" r="2"/><circle cx="236" cy="108" r="2"/></g>':'<g fill="#f5a623"><rect x="160" y="92" width="20" height="20" rx="4"/><rect x="190" y="84" width="22" height="22" rx="4" transform="rotate(12 201 95)"/><rect x="220" y="94" width="20" height="20" rx="4"/></g><path d="M200 84q10-24 28-22q-4 18-28 22z" fill="#3a9d4a"/>')}
+ return sv(b)}
+function render(){const t=tr(),q=$('#q').value.trim().toLowerCase();$('#menu').className='v-'+view;
+ const h=CATS.map(c=>{const its=ITEMS.filter(i=>i.c==c&&(!eg||i.t.includes('eggless'))&&(!q||(i.n[L]+i.d[L]+i.n.en).toLowerCase().includes(q)));
+  return its.length?`<section class="cat" id="s-${c}"><h2>${esc(cl(c))}</h2><div class="gr">${its.map(i=>{const n=ITEMS.indexOf(i);return`<article class="it" tabindex="0"><div class="im" style="--h:${hu(c)}">${imgUrl(i.img)?`<img src="${esc(imgUrl(i.img))}" alt="${esc(i.n[L])}" loading="lazy" referrerpolicy="no-referrer" data-n="${n}">`:art(i,n)}</div><div class="cn"><div class="hd"><h3>${esc(i.n[L])}</h3><span class="fr">${t.from.replace('{p}',SHOP.cur+Math.min(...i.v.map(v=>v[1])))}</span></div><div class="ov"><div class="tg">${i.t.map(x=>`<i class="${x=='eggless'?'eg':''}">${t[x]||esc(x)}</i>`).join('')}</div><p>${esc(i.d[L])}</p><div class="pr">${i.v.map(v=>`<span>${esc(v[0])}<b>${SHOP.cur}${v[1]}</b></span>`).join('')}</div></div></div></article>`}).join('')}</div></section>`:''}).join('');
+ $('#menu').innerHTML=h||(state=='ld'?SKEL():'')||`<div class="none">${state?t[state]:t.none}${state=='lf'&&location.search.includes('debug')?'<br><small>'+esc(dbg)+'</small>':''}</div>`;$$('.it').forEach(e=>io.observe(e));$$('.cat').forEach(e=>spy.observe(e))}
+$('#q').oninput=render;
+$('#menu').addEventListener('click',e=>{const a=e.target.closest('.it');if(a&&matchMedia('(hover:none)').matches){$$('.it.open').forEach(x=>x!=a&&x.classList.remove('open'));a.classList.toggle('open')}});
+/* if a photo fails to load, fall back to the illustration */
+addEventListener('error',e=>{const m=e.target;if(m.tagName=='IMG'&&m.dataset.n){const w=document.createElement('div');w.innerHTML=art(ITEMS[+m.dataset.n],+m.dataset.n);m.replaceWith(w.firstChild)}},true);
+/* splash */
+$('#go').onclick=()=>{$('#sp').classList.add('out');setTimeout(()=>$('#sp').remove(),900)};
+/* QR */
+let qrd=0;
+$('#qo').onclick=()=>{$('#qr').style.display='flex';if(!qrd){qrd=1;$('#qc').textContent='';try{new QRCode($('#qc'),{text:SITE_URL,width:240,height:240,colorDark:'#3b2418',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M})}catch(e){$('#qc').textContent=SITE_URL;qrd=0}}$('#qx').focus()};
+const qx=()=>$('#qr').style.display='none';$('#qx').onclick=qx;$('#qr').onclick=e=>{if(e.target.id=='qr')qx()};
+addEventListener('keydown',e=>{if(e.key=='Escape'){qx();$('#lm').classList.remove('open');$('#lb').setAttribute('aria-expanded','false')}});
+$('#qpr').onclick=()=>print();
+{const l=$('#ql');l.href=SITE_URL;l.textContent=SITE_URL.replace(/^https?:\/\//,'')}
+function qrPng(){const s=$('#qc canvas')||$('#qc img');if(!s)return'';const W=s.naturalWidth||s.width||240,m=40,k=4,c=document.createElement('canvas');c.width=c.height=W*k+m*2;const x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);x.imageSmoothingEnabled=false;x.drawImage(s,m,m,W*k,W*k);try{return c.toDataURL('image/png')}catch(e){return''}}
+$('#qdl').onclick=()=>{const u=qrPng();if(!u)return;const a=document.createElement('a');a.href=u;a.download='menu-qr.png';document.body.appendChild(a);a.click();a.remove()};
+$('#qcp').onclick=async()=>{try{await navigator.clipboard.writeText(SITE_URL);const b=$('#qcp'),o=b.textContent;b.textContent=tr().copied;setTimeout(()=>b.textContent=o,1600)}catch(e){}};
+const LIVE=SOURCES.sheetId||SOURCES.menu||SOURCES.file;let state=LIVE?'ld':'',dbg='';if(LIVE){ITEMS=[];CATS=[]}
+ui();render();
+/* ===== LIVE DATA FROM GOOGLE SHEETS ===== */
+const LOOK={'choc-cake':['cake',["#4a2616","#7a4a30","#2a120a","choc"]],'redvelvet-cake':['cake',["#b3202f","#fff3ea","#fff3ea","rv"]],'pineapple-cake':['cake',["#f6dfa0","#ffffff","#fff7ea","pine"]],'blackforest-cake':['cake',["#3d2012","#ffffff","#fdf3ea","cherry"]],'chip-cookie':['cookie',["#d9a566","#3b2012","chip"]],'butter-cookie':['cookie',["#ebc78c","#c99a5b","butter"]],'oat-cookie':['cookie',["#cf9a5e","#8e3b6e","oat"]],'lava-cake':['lava',[]],'brownie':['brownie',[]],'tiramisu-cup':['cup',[["#3b2012","#f3e3c3","#7a4a30","#f3e3c3"],"cocoa"]],'mango-cup':['cup',[["#f5b942","#fde39a","#f5b942","#fff1c1"],"mango"]]};
+function csv(t){const r=[];let row=[],c='',q=false;for(let i=0;i<t.length;i++){const h=t[i];if(q){if(h=='"'){if(t[i+1]=='"'){c+='"';i++}else q=false}else c+=h}else if(h=='"')q=true;else if(h==','){row.push(c);c=''}else if(h=='\n'||h=='\r'){if(h=='\r'&&t[i+1]=='\n')i++;row.push(c);r.push(row);row=[];c=''}else c+=h}if(c!==''||row.length){row.push(c);r.push(row)}return r}
+const norm=x=>String(x||'').trim().toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'');
+const yes=x=>/^(true|yes|y|1|show)$/i.test(String(x).trim());
+async function txt(u){const r=await fetch(u+(u.includes('?')?'&':'?')+'_='+Date.now(),{cache:'no-store'});if(!r.ok)throw new Error('HTTP '+r.status);return r.text()}
+const KEYS=['menu','settings','theme','palettes'];
+const csvUrl=k=>SOURCES[k]||(SOURCES.sheetId&&SOURCES.tabs[k]?`https://docs.google.com/spreadsheets/d/${SOURCES.sheetId}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(SOURCES.tabs[k])}`:'');
+function loadScript(src){return new Promise((ok,no)=>{if(window.XLSX)return ok();const e=document.createElement('script');e.src=src;e.onload=ok;e.onerror=()=>no(new Error('could not load xlsx reader'));document.head.appendChild(e)})}
+let mode='';
+/* Finds the real header row (the one containing "Show"), even if the sheet has a title or notes above it. */
+function findHeader(rows){for(let i=0;i<Math.min(rows.length,20);i++){const h=rows[i].map(norm);if(h.includes('show')&&(h.includes('name_english')||h.includes('category')))return rows.slice(i)}return null}
+/* Way 1: CSV (Google Sheet tab CSV, or "Publish to web" CSV links) */
+async function fromCsv(){const o={};
+ const ks=KEYS.filter(k=>csvUrl(k)),rs=await Promise.allSettled(ks.map(k=>txt(csvUrl(k))));
+ for(let i=0;i<ks.length;i++){if(rs[i].status=='fulfilled')o[ks[i]]=csv(rs[i].value);else if(ks[i]=='menu')throw rs[i].reason}
+ const m=o.menu&&findHeader(o.menu);if(!m)throw new Error('CSV loaded but no "Show" header row found in Menu tab');o.menu=m;return o}
+/* Way 2: Excel (.xlsx) - either SOURCES.file (a link to an .xlsx on your hosting / any CORS-open link) or the Google Sheet export */
+async function fromXlsx(){
+ await loadScript('https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js');
+ const u=SOURCES.file||(SOURCES.sheetId?`https://docs.google.com/spreadsheets/d/${SOURCES.sheetId}/export?format=xlsx`:'');if(!u)throw new Error('No xlsx source');
+ const r=await fetch(u+(u.includes('?')?'&':'?')+'_='+Date.now(),{cache:'no-store'});if(!r.ok)throw new Error('Excel HTTP '+r.status);
+ const wb=XLSX.read(await r.arrayBuffer(),{type:'array'}),o={};
+ KEYS.forEach(k=>{const ws=wb.Sheets[SOURCES.tabs[k]];if(ws)o[k]=XLSX.utils.sheet_to_json(ws,{header:1,raw:true,defval:''}).map(x=>x.map(String))});
+ const m=o.menu&&findHeader(o.menu);if(!m)throw new Error('Excel loaded but Menu tab or "Show" header not found');o.menu=m;return o}
+/* Tries CSV and Excel (the one that worked last time goes first) and reports both reasons if both fail. */
+async function getTabs(){
+ const order=(SOURCES.file&&!SOURCES.menu)?['xlsx','csv']:mode=='xlsx'?['xlsx','csv']:['csv','xlsx'],errs=[];
+ for(const m of order){try{const o=await(m=='csv'?fromCsv:fromXlsx)();mode=m;return o}catch(e){errs.push((m=='csv'?'CSV: ':'Excel: ')+(e.message||e))}}
+ throw new Error(errs.join(' | '))}
+function hexHue(h){h=h.replace('#','');if(h.length==3)h=[...h].map(x=>x+x).join('');const[r,g,b]=[0,2,4].map(i=>parseInt(h.slice(i,i+2),16)/255),mx=Math.max(r,g,b),d=mx-Math.min(r,g,b);if(!d)return 30;let x=mx==r?((g-b)/d)%6:mx==g?(b-r)/d+2:(r-g)/d+4;return Math.round((x*60+360)%360)}
+let sig='';
+async function sync(){try{
+ const tb=await getTabs(),key=JSON.stringify(tb);
+ if(key===sig)return;apply(tb);sig=key;try{localStorage.setItem('mc2',key)}catch(e){}}
+ catch(e){console.warn('Sheet sync failed',e);dbg=String(e.message||e);if(state=='ld'){state='lf';render()}}}
+/* applies sheet data to the page (also used to show the last saved copy instantly) */
+function apply(tb){
+ if(tb.settings){const S={};tb.settings.slice(1).forEach(r=>S[norm(r[0])]=(r[1]||'').trim());
+  LANGS.forEach(([l])=>{if(S['name_'+l])SHOP.name[l]=S['name_'+l];if(S['hours_'+l])SHOP.hours[l]=S['hours_'+l];if(S['address_'+l])SHOP.address[l]=S['address_'+l]});
+  if(S.whatsapp)SHOP.whatsapp=S.whatsapp.replace(/\D/g,'');if(S.phone)SHOP.phone=S.phone;if(S.currency)SHOP.cur=S.currency}
+ if(tb.theme){const T2={};tb.theme.forEach(r=>{const k=norm(r[0]);if(k)T2[k]=r.slice(1).map(x=>(x||'').trim())});
+  const KS=['bg','surface','text','muted','line','accent','accent_text'],M={bg:'--bg',surface:'--sf',text:'--fg',muted:'--mut',line:'--ln',accent:'--ac',accent_text:'--acf'},ok=x=>/^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(x||'');
+  const pn=norm((T2.selected_palette||[])[0]),pr=pn&&(tb.palettes||[]).find(r=>norm(r[0])==pn);
+  const mk=i=>KS.map((k,j)=>{const t=T2[k]||[],c=[t[2+i],pr&&(pr[(i?8:1)+j]||'').trim(),t[i]].find(ok);return c?`${M[k]}:${c}`:''}).filter(Boolean).join(';');
+  const lt=mk(0),dk=mk(1);let st=document.getElementById('theme');if(!st){st=document.createElement('style');st.id='theme';document.head.appendChild(st)}
+  st.textContent=(lt?`:root{${lt}}`:'')+(dk?`@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){${dk}}}`:'');
+  Object.keys(T2).filter(k=>k.startsWith('tint_')&&ok(T2[k][0])).forEach(k=>HUE[k.slice(5)]=hexHue(T2[k][0]))}
+ const rows=tb.menu,h=rows[0].map(norm),ix=n=>h.indexOf(n);
+ const items=rows.slice(1).filter(r=>r.some(x=>String(x).trim())&&yes(r[ix('show')])).map(r=>{const g=n=>ix(n)<0?'':String(r[ix(n)]||'').trim(),v=[];
+  for(let k=1;k<=3;k++){const z=g('size_'+k),p=parseFloat(g('price_'+k));if(z&&p>=0)v.push([z,p])}
+  const lk=LOOK[g('look')]||LOOK['chip-cookie'],en=g('name_english'),de=g('description_english');
+  const rc=g('category'),ck=norm(rc)||'menu';if(!CATLAB[ck])CATLAB[ck]=rc||'Menu';return{c:ck,img:g('image_url'),k:lk[0],p:lk[1],t:g('tags').split(/[,;]/).map(norm).filter(Boolean).map(x=>x=='bestseller'?'best':x),
+   n:{en,hi:g('name_hindi')||en,mr:g('name_marathi')||en},d:{en:de,hi:g('description_hindi')||de,mr:g('description_marathi')||de},v}});
+ state='';ITEMS=items;CATS=[...new Set(items.map(i=>i.c))];ui();render()}
+try{const c=localStorage.getItem('mc2');if(c&&LIVE){apply(JSON.parse(c));sig=c}}catch(e){}
+if(LIVE||SOURCES.settings||SOURCES.theme){sync();setInterval(sync,Math.max(15,SOURCES.refreshSec)*1000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)sync()})}
+</script></body></html>

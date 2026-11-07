@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Sweet Crumbs — Digital Menu</title>
 <meta name="description" content="Home-made cakes, cookies and desserts. Scan, browse the menu in English, Hindi or Marathi, and order on WhatsApp.">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://docs.google.com"><link rel="dns-prefetch" href="https://drive.google.com"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Inter:wght@400;500;600&family=Noto+Sans+Devanagari:wght@400;500;700&family=Noto+Serif+Devanagari:wght@600;800&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#fbf5ee;--sf:#fff;--fg:#3b2418;--mut:#8a6f60;--ln:#eadbcc;--ac:#c2415d;--acf:#fff;--sh:0 8px 30px rgba(80,40,20,.08);--hd:'Fraunces','Noto Serif Devanagari',Georgia,serif;--bd:'Inter','Noto Sans Devanagari',system-ui,sans-serif;color-scheme:light dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -88,6 +88,36 @@ mark{background:color-mix(in srgb,var(--ac) 24%,transparent);color:inherit;borde
 .v-list .cn{display:flex;flex-direction:column;gap:4px}
 .v-list .ov{display:contents}.v-list .hd{order:1}.v-list .tg{order:2;margin:0}.v-list .ov p{order:3;margin:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .v-list .pr{order:4;margin-top:4px;gap:6px}.v-list .pr span{padding:3px 10px;font-size:13px}
+/* ux: loading + footer */
+.it{transform:translateY(8px);transition:opacity .3s,transform .3s}.v-list .it{transition:opacity .3s,transform .3s,background .2s}
+.sk{display:grid;gap:18px;grid-template-columns:repeat(auto-fill,minmax(min(100%,270px),1fr));padding-top:28px}
+.skc{background:var(--sf);border:1px solid var(--ln);border-radius:22px;padding-bottom:18px;overflow:hidden}
+.skc i,.skc b{display:block;background:linear-gradient(90deg,var(--ln) 25%,color-mix(in srgb,var(--ln) 40%,var(--sf)) 50%,var(--ln) 75%);background-size:200% 100%;animation:shm 1.3s linear infinite}
+.skc i{aspect-ratio:4/3}.skc b{height:14px;width:60%;margin:14px 18px 0;border-radius:7px}.skc b+b{width:85%;height:11px;margin-top:10px}@keyframes shm{to{background-position:-200% 0}}
+.v-list .sk{grid-template-columns:1fr;gap:0}.v-list .skc{display:grid;grid-template-columns:96px 1fr;align-items:center;gap:8px 14px;padding:14px 16px;border-radius:0}.v-list .skc i{grid-row:span 2;aspect-ratio:1;border-radius:14px}.v-list .skc b,.v-list .skc b+b{margin:0}
+.ft{display:block;margin-top:48px;padding:28px 22px 22px;border:1px solid var(--ln);border-radius:26px;background:var(--sf);box-shadow:var(--sh)}
+.fb{font:800 26px var(--hd);color:var(--fg)}.fb span{color:var(--ac)}.ftg{margin-top:4px}
+.fl{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:16px}.fl li{display:flex;gap:14px;align-items:flex-start;color:var(--fg)}
+.fl svg{flex:none;width:38px;height:38px;padding:9px;border-radius:12px;background:color-mix(in srgb,var(--ac) 12%,transparent);stroke:var(--ac);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.fl small{display:block;color:var(--mut);font-size:12px}.fl a{color:var(--fg);text-decoration:underline;text-decoration-color:var(--ln);text-underline-offset:3px}
+.fa{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.fa a{padding:12px 22px;border-radius:99px;font-weight:600;text-decoration:none;border:1.5px solid var(--ln);color:var(--fg)}.fa a.p{background:var(--ac);border-color:var(--ac);color:var(--acf)}
+.fn{margin-top:22px;padding:12px 14px;border-radius:14px;background:color-mix(in srgb,var(--ac) 8%,transparent);font-size:13px}.cp{margin-top:16px;text-align:center;font-size:12px}
+/* footer: centered */
+.ft{text-align:center}
+.fl{grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-top:22px}
+.fl li{flex-direction:column;align-items:center;gap:8px;padding:16px 12px;border:1px solid var(--ln);border-radius:18px;background:var(--bg);overflow-wrap:anywhere}
+.fl svg{width:42px;height:42px}.fa{justify-content:center}
+/* cards: always-visible details + order actions */
+.hd .fr{display:none}
+.v-card .ov{position:static;aspect-ratio:auto;opacity:1;overflow:visible;background:none;color:inherit;padding:0;justify-content:flex-start;gap:10px}
+.v-card .cn{padding:0 18px 18px}.v-card .hd{padding:14px 0 8px}
+.v-card .ov p{margin:0;color:var(--mut);font-size:14px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.v-card .ov .tg i{background:color-mix(in srgb,var(--ac) 14%,transparent);color:var(--ac)}.v-card .ov .tg i.eg{background:#2e9e5b22;color:#1f8a4c}
+.v-card .pr{margin-top:2px}
+.sz{display:flex;gap:6px;align-items:baseline;min-height:40px;padding:8px 14px;border:1.5px solid var(--ln);border-radius:12px;background:var(--sf);font-size:14px}
+.sz b{margin:0;color:var(--ac);font-weight:600}.sz[aria-pressed=true]{border-color:var(--ac);background:color-mix(in srgb,var(--ac) 10%,var(--sf))}.sz.one{pointer-events:none}
+.od{display:flex;align-items:center;justify-content:center;gap:8px;min-height:46px;margin-top:4px;border-radius:14px;background:#25d366;color:#04230f;font-weight:600;text-decoration:none;transition:transform .15s}.od:active{transform:scale(.97)}
+.v-list .sz{min-height:34px;padding:5px 11px;font-size:13px}.v-list .od{order:5;align-self:flex-start;min-height:38px;padding:0 16px;margin-top:6px;font-size:14px}
 /* qr */
 #qr{position:fixed;inset:0;z-index:70;background:rgba(20,10,6,.6);display:none;align-items:center;justify-content:center;padding:20px}
 #qr .cd{background:var(--sf);border-radius:28px;padding:28px;max-width:360px;width:100%;text-align:center;animation:pop .4s cubic-bezier(.2,.9,.3,1.2)}@keyframes pop{from{transform:scale(.85);opacity:0}}
@@ -104,7 +134,7 @@ mark{background:color-mix(in srgb,var(--ac) 24%,transparent);color:inherit;borde
 <main><div class="hero"><h2 id="h2"></h2><p id="hp"></p></div><div class="rs" id="rs" role="status" aria-live="polite"></div><div id="menu"></div><div class="ft" id="ft"></div></main>
 <a id="wa" target="_blank" rel="noopener"></a>
 <div id="qr" role="dialog" aria-modal="true"><div class="cd"><h2 id="qh"></h2><p id="qp"></p><div id="qc"></div><div class="ac"><button class="p" id="qpr"></button><button id="qcp"></button><button id="qx"></button></div></div></div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
 /* ============ EDIT YOUR BUSINESS DETAILS & MENU HERE ============
  Shop name, contact, hours, address and every dish are below, each with English (en), Hindi (hi) and Marathi (mr) text.
@@ -145,9 +175,9 @@ const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',
 let L='en',eg=false,view='card';try{view=localStorage.getItem('view')==='list'?'list':'card'}catch(e){}
 try{const s=localStorage.getItem('lang');if(s&&T[s])L=s;else{const n=(navigator.language||'en').slice(0,2);if(T[n])L=n}}catch(e){}
 const tr=()=>T[L];
-Object.assign(T.en,{clear:'Clear',rn:'{n} of {m} items',nh:'Try another word or clear the filters.'});
-Object.assign(T.hi,{clear:'हटाएँ',rn:'{m} में से {n} आइटम',nh:'दूसरा शब्द आज़माएँ या फ़िल्टर हटाएँ।'});
-Object.assign(T.mr,{clear:'काढा',rn:'{m} पैकी {n} आयटम',nh:'दुसरा शब्द वापरा किंवा फिल्टर काढा.'});
+Object.assign(T.en,{add:'Order',ordn:"Hello! I'd like to order:",addr:'Address',clear:'Clear',rn:'{n} of {m} items',nh:'Try another word or clear the filters.'});
+Object.assign(T.hi,{add:'ऑर्डर करें',ordn:'नमस्ते! मैं यह ऑर्डर करना चाहता/चाहती हूँ:',addr:'पता',clear:'हटाएँ',rn:'{m} में से {n} आइटम',nh:'दूसरा शब्द आज़माएँ या फ़िल्टर हटाएँ।'});
+Object.assign(T.mr,{add:'ऑर्डर करा',ordn:'नमस्कार! मला हे ऑर्डर करायचे आहे:',addr:'पत्ता',clear:'काढा',rn:'{m} पैकी {n} आयटम',nh:'दुसरा शब्द वापरा किंवा फिल्टर काढा.'});
 const fold=x=>String(x).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
 const words=()=>fold($('#q').value.trim()).split(/\s+/).filter(Boolean);
 const hit=i=>{const t=tr(),h=fold([i.n[L],i.n.en,i.d[L],i.c,t[i.c]||'',...i.t.map(x=>t[x]||x),...i.v.map(v=>v[0])].join(' '));return words().every(w=>h.includes(w))&&(!eg||i.t.includes('eggless'))};
@@ -159,6 +189,10 @@ function chips(){const t=tr(),n={};ITEMS.forEach(i=>{if(hit(i))n[i.c]=(n[i.c]||0
  r.innerHTML=[`<button data-c="all"${on('all')}>${t.all}<small>${Object.values(n).reduce((a,b)=>a+b,0)}</small></button>`,...CATS.map(c=>`<button data-c="${c}"${on(c)}${n[c]?'':' disabled'}>${t[c]||esc(c)}<small>${n[c]||0}</small></button>`),`<span class="sep"></span><button id="eg" aria-pressed="${eg}">🌱 ${t.eggless}</button>`].join('');
  r.scrollLeft=sc;$$('#ch [data-c]').forEach(b=>b.onclick=()=>go(b.dataset.c));$('#eg').onclick=()=>{eg=!eg;render()};fade()}
 function clearAll(){$('#q').value='';eg=false;render()}
+const SEL={},sk=(n,i)=>Math.min(SEL[n]||0,i.v.length-1);
+const ol=(i,k)=>{const t=tr(),v=i.v[k];return`https://wa.me/${SHOP.whatsapp}?text=${encodeURIComponent(`${t.ordn} ${i.n[L]} – ${v[0]} (${SHOP.cur}${v[1]})`)}`};
+const olb=(i,k)=>`💬 ${tr().add} · ${SHOP.cur}${i.v[k][1]}`;
+function acts(i,n){if(!i.v.length)return'';const k=sk(n,i);return`<div class="pr" role="group">${i.v.map((v,j)=>`<button type="button" class="sz${i.v.length<2?' one':''}" data-k="${j}" aria-pressed="${j==k}">${esc(v[0])}<b>${SHOP.cur}${v[1]}</b></button>`).join('')}</div><a class="od" target="_blank" rel="noopener" href="${ol(i,k)}">${olb(i,k)}</a>`}
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{rootMargin:'0px 0px -6% 0px'});
 let cur='all',lock=0;
 const spy=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&!lock&&scrollY>120){cur=e.target.id.slice(2);mark()}}),{rootMargin:'-40% 0px -55% 0px'});
@@ -171,11 +205,12 @@ function ui(){const t=tr();document.documentElement.lang=L;document.title=`${SHO
  $('#hb').innerHTML=`${esc(SHOP.name[L])}<span>.</span>`;$('#q').placeholder=t.search;$('#q').setAttribute('aria-label',t.search);
  $('#h2').textContent=t.hello;$('#hp').textContent=t.sub;langBtns($('#slg'));langBtns($('#hlg'));viewBtns();
  $('#qz').setAttribute('aria-label',t.clear);
- $('#ft').innerHTML=`<div><b>${esc(SHOP.name[L])}</b></div><div>${t.hrs}: ${esc(SHOP.hours[L])}</div><div>${esc(SHOP.address[L])}</div><div>${t.call}: <a href="tel:${esc(SHOP.phone.replace(/\s/g,''))}">${esc(SHOP.phone)}</a></div><div style="margin-top:8px;font-size:13px">${t.note}</div>`;
+ const ic=p=>`<svg viewBox="0 0 24 24" aria-hidden="true">${p}</svg>`,ph=esc(SHOP.phone.replace(/\s/g,'')),ig=SHOP.instagram?(/^http/.test(SHOP.instagram)?SHOP.instagram:'https://instagram.com/'+SHOP.instagram.replace('@','')):'';
+ $('#ft').innerHTML=`<div class="fb">${esc(SHOP.name[L])}<span>.</span></div><p class="ftg">${t.tag}</p><ul class="fl"><li>${ic('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>')}<div><small>${t.hrs}</small>${esc(SHOP.hours[L])}</div></li><li>${ic('<path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/>')}<div><small>${t.addr}</small><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(SHOP.address[L])}" target="_blank" rel="noopener">${esc(SHOP.address[L])}</a></div></li><li>${ic('<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/>')}<div><small>${t.call}</small><a href="tel:${ph}">${esc(SHOP.phone)}</a></div></li></ul><div class="fa"><a class="p" href="tel:${ph}">${t.call}</a>${ig?`<a href="${esc(ig)}" target="_blank" rel="noopener">Instagram</a>`:''}</div><p class="fn">${t.note}</p><p class="cp">© ${new Date().getFullYear()} ${esc(SHOP.name[L])}</p>`;
  $('#qh').textContent=t.qh;$('#qp').textContent=t.qp;$('#qpr').textContent=t.print;$('#qcp').textContent=t.copy;$('#qx').textContent=t.close;const w=$('#wa');w.textContent='💬 '+t.order;w.href=`https://wa.me/${SHOP.whatsapp}?text=${encodeURIComponent(t.wa)}`}
 const hu=c=>HUE[c]??([...c].reduce((a,x)=>a+x.charCodeAt(0)*37,0)%360);
 /* Google Drive share links (…/file/d/ID/view, open?id=ID, uc?id=ID) become direct picture links; any other http(s) link or file path is used as is. */
-const imgUrl=u=>{u=(u||'').trim();if(!u)return'';const m=u.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:[^#]*&)?id=|thumbnail\?(?:[^#]*&)?id=)([\w-]{10,})/)||u.match(/docs\.google\.com\/.*?\/d\/([\w-]{10,})/);return m?`https://drive.google.com/thumbnail?id=${m[1]}&sz=w1000`:u};
+const imgUrl=u=>{u=(u||'').trim();if(!u)return'';const m=u.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:[^#]*&)?id=|thumbnail\?(?:[^#]*&)?id=)([\w-]{10,})/)||u.match(/docs\.google\.com\/.*?\/d\/([\w-]{10,})/);return m?`https://drive.google.com/thumbnail?id=${m[1]}&sz=w640`:u};
 const sv=b=>`<svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${b}</svg>`;
 const PL='<ellipse cx="200" cy="252" rx="150" ry="20" fill="#000" opacity=".12"/><ellipse cx="200" cy="244" rx="150" ry="20" fill="#fff"/><ellipse cx="200" cy="240" rx="120" ry="14" fill="#f3ece4"/>';
 const TOP={cherry:'<g fill="#3a1c10"><rect x="150" y="104" width="16" height="5" rx="2" transform="rotate(-20 158 106)"/><rect x="236" y="106" width="16" height="5" rx="2" transform="rotate(25 244 108)"/><rect x="176" y="126" width="14" height="5" rx="2" transform="rotate(10 183 128)"/><rect x="214" y="124" width="14" height="5" rx="2" transform="rotate(-15 221 126)"/></g><circle cx="200" cy="100" r="13" fill="#c8102e"/><circle cx="196" cy="96" r="4" fill="#fff" opacity=".5"/><path d="M200 88q8-16 22-18" stroke="#3a7d2c" stroke-width="3" fill="none"/>',
@@ -193,13 +228,15 @@ function art(i,n){const p=i.p;let b=PL;
  return sv(b)}
 function render(){const t=tr(),q=$('#q').value.trim();$('#menu').className='v-'+view;$('.hero').style.display=q?'none':'';$('.sw').classList.toggle('has',!!q);
  const h=CATS.map(c=>{const its=ITEMS.filter(i=>i.c==c&&hit(i));
-  return its.length?`<section class="cat" id="s-${c}"><h2>${t[c]||esc(c)}<small>${its.length} ${t.items}</small></h2><div class="gr">${its.map(i=>{const n=ITEMS.indexOf(i);return`<article class="it" tabindex="0"><div class="im" style="--h:${hu(c)}">${imgUrl(i.img)?`<img src="${esc(imgUrl(i.img))}" alt="${esc(i.n[L])}" loading="lazy" referrerpolicy="no-referrer" data-n="${n}">`:art(i,n)}</div><div class="cn"><div class="hd"><h3>${hl(i.n[L])}</h3><span class="fr">${t.from.replace('{p}',SHOP.cur+Math.min(...i.v.map(v=>v[1])))}</span></div><div class="ov"><div class="tg">${i.t.map(x=>`<i class="${x=='eggless'?'eg':''}">${t[x]||esc(x)}</i>`).join('')}</div><p>${esc(i.d[L])}</p><div class="pr">${i.v.map(v=>`<span>${esc(v[0])}<b>${SHOP.cur}${v[1]}</b></span>`).join('')}</div></div></div></article>`}).join('')}</div></section>`:''}).join('');
+  return its.length?`<section class="cat" id="s-${c}"><h2>${t[c]||esc(c)}<small>${its.length} ${t.items}</small></h2><div class="gr">${its.map(i=>{const n=ITEMS.indexOf(i);return`<article class="it" data-n="${n}"><div class="im" style="--h:${hu(c)}">${imgUrl(i.img)?`<img src="${esc(imgUrl(i.img))}" alt="${esc(i.n[L])}" loading="lazy" decoding="async" referrerpolicy="no-referrer" data-n="${n}">`:art(i,n)}</div><div class="cn"><div class="hd"><h3>${hl(i.n[L])}</h3><span class="fr">${t.from.replace('{p}',SHOP.cur+Math.min(...i.v.map(v=>v[1])))}</span></div><div class="ov"><div class="tg">${i.t.map(x=>`<i class="${x=='eggless'?'eg':''}">${t[x]||esc(x)}</i>`).join('')}</div><p>${esc(i.d[L])}</p>${acts(i,n)}</div></div></article>`}).join('')}</div></section>`:''}).join('');
+ if(!h&&state=='ld'){$('#menu').innerHTML='<div class="sk" aria-busy="true" aria-label="'+t.ld+'">'+'<div class="skc"><i></i><b></b><b></b></div>'.repeat(6)+'</div>';$('#rs').innerHTML='';chips();return}
  $('#menu').innerHTML=h||`<div class="none">${state?t[state]:t.none+'<small>'+t.nh+'</small><button class="bt" id="clr">'+t.clear+'</button>'}${state=='lf'&&location.search.includes('debug')?'<br><small>'+esc(dbg)+'</small>':''}</div>`;$$('.it').forEach(e=>io.observe(e));$$('.cat').forEach(e=>spy.observe(e));
  const n=ITEMS.filter(hit).length;$('#rs').innerHTML=(q||eg)&&n?`<span>${t.rn.replace('{n}',n).replace('{m}',ITEMS.length)}</span><button id="clr">${t.clear}</button>`:'';
  const cl=$('#clr');if(cl)cl.onclick=clearAll;chips()}
 let dt;$('#q').oninput=()=>{$('.sw').classList.toggle('has',!!$('#q').value);clearTimeout(dt);dt=setTimeout(()=>{render();if($('#q').value.trim()&&scrollY>0)scrollTo({top:0})},120)};
 $('#q').onkeydown=e=>{if(e.key=='Escape'&&$('#q').value){e.preventDefault();clearAll()}if(e.key=='Enter')$('#q').blur()};
 $('#qz').onclick=()=>{clearAll();$('#q').focus()};
+$('#menu').addEventListener('click',e=>{const b=e.target.closest('.sz');if(!b)return;const a=b.closest('.it'),n=+a.dataset.n,i=ITEMS[n],k=+b.dataset.k;SEL[n]=k;$$('.sz',a).forEach(x=>x.setAttribute('aria-pressed',x==b));const o=$('.od',a);o.href=ol(i,k);o.textContent=olb(i,k)});
 $('#ch').addEventListener('scroll',fade,{passive:true});addEventListener('resize',fade);
 addEventListener('scroll',()=>{if(!lock&&scrollY<=120&&cur!='all'){cur='all';mark()}},{passive:true});
 new ResizeObserver(()=>document.documentElement.style.setProperty('--hh',$('header').offsetHeight+'px')).observe($('header'));
@@ -228,7 +265,7 @@ const csvUrl=k=>SOURCES[k]||(SOURCES.sheetId&&SOURCES.tabs[k]?`https://docs.goog
 function loadScript(src){return new Promise((ok,no)=>{if(window.XLSX)return ok();const e=document.createElement('script');e.src=src;e.onload=ok;e.onerror=()=>no(new Error('could not load xlsx reader'));document.head.appendChild(e)})}
 let mode='';
 async function getTabs(){
- if(mode!='xlsx'){try{const o={};for(const k of KEYS){const u=csvUrl(k);if(!u)continue;try{o[k]=csv(await txt(u))}catch(e){if(k=='menu')throw e}}
+ if(mode!='xlsx'){try{const o={};await Promise.all(KEYS.map(async k=>{const u=csvUrl(k);if(!u)return;try{o[k]=csv(await txt(u))}catch(e){if(k=='menu')throw e}}));
    if(!o.menu||!o.menu[0].map(norm).includes('show'))throw new Error('CSV did not contain the Menu tab');mode='csv';return o}catch(e){if(!SOURCES.sheetId)throw e;mode='xlsx'}}
  await loadScript('https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js');
  const r=await fetch(`https://docs.google.com/spreadsheets/d/${SOURCES.sheetId}/export?format=xlsx&_=${Date.now()}`,{cache:'no-store'});if(!r.ok)throw new Error('Export HTTP '+r.status+' (is the sheet shared with "Anyone with the link"?)');
@@ -237,9 +274,7 @@ async function getTabs(){
  if(!o.menu)throw new Error('Menu tab not found');return o}
 function hexHue(h){h=h.replace('#','');if(h.length==3)h=[...h].map(x=>x+x).join('');const[r,g,b]=[0,2,4].map(i=>parseInt(h.slice(i,i+2),16)/255),mx=Math.max(r,g,b),d=mx-Math.min(r,g,b);if(!d)return 30;let x=mx==r?((g-b)/d)%6:mx==g?(b-r)/d+2:(r-g)/d+4;return Math.round((x*60+360)%360)}
 let sig='';
-async function sync(){try{
- const tb=await getTabs(),key=JSON.stringify(tb);
- if(key===sig)return;
+function apply(tb,key){
  if(tb.settings){const S={};tb.settings.slice(1).forEach(r=>S[norm(r[0])]=(r[1]||'').trim());
   LANGS.forEach(([l])=>{if(S['name_'+l])SHOP.name[l]=S['name_'+l];if(S['hours_'+l])SHOP.hours[l]=S['hours_'+l];if(S['address_'+l])SHOP.address[l]=S['address_'+l]});
   if(S.whatsapp)SHOP.whatsapp=S.whatsapp.replace(/\D/g,'');if(S.phone)SHOP.phone=S.phone;if(S.currency)SHOP.cur=S.currency}
@@ -257,6 +292,11 @@ async function sync(){try{
   return{c:norm(g('category'))||'menu',img:g('image_url'),k:lk[0],p:lk[1],t:g('tags').split(/[,;]/).map(norm).filter(Boolean).map(x=>x=='bestseller'?'best':x),
    n:{en,hi:g('name_hindi')||en,mr:g('name_marathi')||en},d:{en:de,hi:g('description_hindi')||de,mr:g('description_marathi')||de},v}});
  sig=key;state='';ITEMS=items;CATS=[...new Set(items.map(i=>i.c))];ui();render()}
+async function sync(){try{
+ const tb=await getTabs(),key=JSON.stringify(tb);
+ if(key===sig)return;
+ apply(tb,key);try{localStorage.setItem('mc',key)}catch(e){}}
  catch(e){console.warn('Sheet sync failed',e);dbg=String(e.message||e);if(state=='ld'){state='lf';render()}}}
+if(LIVE){try{const c=localStorage.getItem('mc');if(c)apply(JSON.parse(c),c)}catch(e){}}
 if(LIVE||SOURCES.settings||SOURCES.theme){sync();setInterval(sync,Math.max(15,SOURCES.refreshSec)*1000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)sync()})}
 </script></body></html>

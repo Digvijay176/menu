@@ -2,13 +2,13 @@
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Sweet Crumbs — Digital Menu</title>
-<meta name="description" content="Home-made cakes, cookies and desserts. Scan, browse the menu in English, Hindi or Marathi, and order on WhatsApp.">
+<meta name="description" content="Home-made cakes, cookies and desserts. Scan, browse the menu and prices in English, Hindi or Marathi.">
 <link rel="preconnect" href="https://docs.google.com"><link rel="dns-prefetch" href="https://drive.google.com"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Inter:wght@400;500;600&family=Noto+Sans+Devanagari:wght@400;500;700&family=Noto+Serif+Devanagari:wght@600;800&display=swap"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Inter:wght@400;500;600&family=Noto+Sans+Devanagari:wght@400;500;700&family=Noto+Serif+Devanagari:wght@600;800&display=swap"></noscript>
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;700&family=Noto+Serif+Devanagari:wght@400;600&display=swap"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;700&family=Noto+Serif+Devanagari:wght@400;600&display=swap"></noscript>
 <style>
-:root{--bg:#fbf5ee;--sf:#fff;--fg:#3b2418;--mut:#8a6f60;--ln:#eadbcc;--ac:#c2415d;--acf:#fff;--sh:0 8px 30px rgba(80,40,20,.08);--hd:'Fraunces','Noto Serif Devanagari',Georgia,serif;--bd:'Inter','Noto Sans Devanagari',system-ui,sans-serif;color-scheme:light dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1a1210;--sf:#251a16;--fg:#f6e9dc;--mut:#b49a8a;--ln:#3a2a23;--ac:#ff7a93;--acf:#2a0d14;--sh:0 8px 30px rgba(0,0,0,.35)}}
-:root[data-theme="dark"]{--bg:#1a1210;--sf:#251a16;--fg:#f6e9dc;--mut:#b49a8a;--ln:#3a2a23;--ac:#ff7a93;--acf:#2a0d14;--sh:0 8px 30px rgba(0,0,0,.35)}
+:root{--bg:#fbf3ea;--sf:#fffaf5;--fg:#3f2a22;--mut:#8a6b5d;--ln:#ecdcd0;--ac:#8a2e55;--acf:#fff;--bl:#f8e4e8;--sh:0 4px 16px rgba(80,40,20,.06);--hd:'DM Serif Display','Noto Serif Devanagari',Georgia,serif;--bd:'Manrope','Noto Sans Devanagari',system-ui,sans-serif;color-scheme:light dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1a1210;--sf:#251a16;--fg:#f6e9dc;--mut:#b49a8a;--ln:#3a2a23;--ac:#e8a0b8;--acf:#2b0d1c;--bl:#3a2230;--sh:0 8px 30px rgba(0,0,0,.35)}}
+:root[data-theme="dark"]{--bg:#1a1210;--sf:#251a16;--fg:#f6e9dc;--mut:#b49a8a;--ln:#3a2a23;--ac:#e8a0b8;--acf:#2b0d1c;--bl:#3a2230;--sh:0 8px 30px rgba(0,0,0,.35)}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}*,*::before,*::after{box-sizing:inherit;margin:0}
 body{background:var(--bg);color:var(--fg);font:400 16px/1.55 var(--bd);-webkit-font-smoothing:antialiased;padding-bottom:90px}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
@@ -124,16 +124,133 @@ mark{background:color-mix(in srgb,var(--ac) 24%,transparent);color:inherit;borde
 #qr h2{font-size:26px}#qr p{color:var(--mut);font-size:14px;margin:6px 0 18px}
 #qc{background:#fff;padding:14px;border-radius:18px;display:inline-block;line-height:0;border:1px solid var(--ln)}#qc img,#qc canvas{max-width:100%;height:auto}
 .ac{display:flex;gap:8px;margin-top:18px;justify-content:center;flex-wrap:wrap}.ac button{padding:10px 18px;border-radius:99px;border:1.5px solid var(--ln);font-weight:500;font-size:14px}.ac .p{background:var(--ac);border-color:var(--ac);color:var(--acf)}
-@media print{body>*{display:none!important}body>#qr{display:flex!important;position:static;background:#fff;color:#000}#qr .cd{box-shadow:none;animation:none}.ac{display:none}}
+/* language dropdown + QR popup */
+.lw{position:relative}.lb{display:flex;align-items:center;gap:6px;padding:8px 12px;border:1.5px solid var(--ln);border-radius:99px;background:var(--sf);font-size:13px;font-weight:500;white-space:nowrap}.lb svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.lb .cv{width:12px;height:12px;transition:transform .2s}.lb[aria-expanded=true] .cv{transform:rotate(180deg)}
+.lm{position:absolute;right:0;top:calc(100% + 8px);min-width:160px;background:var(--sf);border:1px solid var(--ln);border-radius:16px;box-shadow:var(--sh);padding:6px;display:none;z-index:50}.lm.open{display:block}
+.lm button{display:flex;justify-content:space-between;align-items:center;width:100%;padding:10px 12px;border-radius:10px;font-size:14px;text-align:left}.lm button:hover{background:color-mix(in srgb,var(--ac) 8%,transparent)}.lm button[aria-checked=true]{background:color-mix(in srgb,var(--ac) 14%,transparent);color:var(--ac);font-weight:600}
+#qr .cd{position:relative;max-height:calc(100dvh - 40px);overflow:auto}
+.xb{position:absolute;top:12px;right:12px;width:36px;height:36px;border-radius:50%;font-size:24px;line-height:1;display:grid;place-items:center;color:var(--mut);background:color-mix(in srgb,var(--ln) 55%,transparent)}
+.qn{font:800 15px var(--hd);color:var(--ac);margin-bottom:6px}.ql{display:block;margin-top:14px;font-size:13px;color:var(--ac);word-break:break-all;text-decoration:none}
+.ac{flex-direction:column;align-items:stretch}.ac .p{width:100%;padding:13px 18px;font-weight:600}.ac2{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}.ac2 button{flex:1;min-width:90px}.ac button[hidden]{display:none}
+/* ===== compact redesign: 4/8px spacing, 36px controls, 10px radius ===== */
+:root{--r:10px;--ch:36px}
+main{padding:4px 12px}.hr{padding:8px 12px;gap:8px}.br{font-size:18px}.tb{padding:0 12px 8px}
+.lb,.qb,.sr .sg,#q{height:var(--ch)}
+.lb{padding:0 10px;border-width:1px;border-radius:var(--r);gap:6px}.lb:hover{border-color:var(--ac)}
+.qb{width:var(--ch);border-radius:var(--r)}.qb svg{width:18px;height:18px}
+.lm{display:block;visibility:hidden;opacity:0;transform:translateY(-4px);transition:opacity .15s,transform .15s,visibility .15s;min-width:150px;padding:4px;border-radius:12px}
+.lm.open{visibility:visible;opacity:1;transform:none}.lm button{min-height:36px;padding:0 10px;border-radius:8px;font-size:13px}
+.sr{gap:8px;margin-bottom:8px}
+#q{padding:0 36px;border-width:1px;border-radius:var(--r);font-size:15px}.sw>svg{left:12px;width:16px;height:16px}#qz{width:28px;height:28px;right:4px}
+.sr .sg{border-width:1px;border-radius:var(--r)}.sr .sg button{height:100%;padding:0 12px}
+.chs{gap:4px}.chs button{min-height:32px;padding:0 12px;border-width:1px;background:none;color:var(--mut);font-size:13px}
+.chs button:hover:not(:disabled):not(.on){background:color-mix(in srgb,var(--fg) 6%,transparent);color:var(--fg)}
+.chs button.on{background:var(--ac);border-color:var(--ac);color:var(--acf)}.chs button small{margin-left:4px;font-size:11px}.chs .sep{margin:6px 2px}
+.hero{padding:12px 0 0}.hero h2{font-size:clamp(22px,4vw,30px)}.hero p{font-size:14px;margin-top:4px}
+.rs{padding-top:8px;font-size:13px}.cat{padding-top:16px}.cat>h2{font-size:20px;margin-bottom:8px}.cat>h2 small{font-size:12px}
+.gr,.sk{gap:12px;grid-template-columns:repeat(auto-fill,minmax(min(100%,168px),1fr))}.sk{padding-top:16px}
+.it,.skc{border-radius:14px}
+.v-card .cn{padding:0 12px 12px}.v-card .hd{padding:10px 0 4px}.hd h3{font-size:15px;line-height:1.25}
+.v-card .ov{gap:6px}.v-card .ov p{font-size:13px;line-height:1.4}.tg i{font-size:10px;padding:1px 7px}
+.pr{gap:4px}.sz{padding:2px 8px;font-size:12px;gap:4px}.v-card .pr{margin-top:0}
+.v-list .gr{border-radius:14px}.v-list .it{padding:8px 12px;gap:12px}.v-list .im{width:64px;border-radius:10px}
+.v-list .hd h3{font-size:15px}.v-list .ov p{-webkit-line-clamp:1;font-size:13px}.v-list .sz{padding:1px 8px}
+.v-list .sk{grid-template-columns:1fr;gap:0;padding-top:16px}.v-list .skc{grid-template-columns:64px 1fr;padding:8px 12px;border-radius:0}
+/* ===== digital menu card ===== */
+.br{display:flex;align-items:center;gap:8px;font-size:17px;min-width:0}.br .bn{color:var(--fg);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lo{display:grid;place-items:center;flex:none;width:32px;height:32px;border-radius:10px;background:var(--bl);font-style:normal;font-size:18px;overflow:hidden}.lo img{width:100%;height:100%;object-fit:cover}
+.hero h2{display:none}.hero{padding:8px 0 0}.hero p{margin:0;font-size:13px}
+.tg i,.v-card .ov .tg i{background:var(--bl);color:var(--ac)}
+.pc{display:grid;gap:2px}.pl{display:flex;align-items:baseline;justify-content:flex-end;gap:8px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.pl span{font-size:12px;color:var(--mut)}.pl b{min-width:52px;text-align:right;font-size:15px;font-weight:700;color:var(--ac)}
+.v-card .pc{margin-top:4px;padding-top:6px;border-top:1px solid var(--ln)}.v-card .pl{justify-content:space-between}
+.v-list .cn{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:12px;row-gap:2px;align-content:center}
+.v-list .hd,.v-list .tg,.v-list .ov p{grid-column:1}.v-list .pc{grid-column:2;grid-row:1/span 3;align-self:center}
+@media(pointer:coarse){.chs button{min-height:36px}}
+/* simple footer */
+.ft{display:grid;gap:4px;margin-top:24px;padding:12px 0 8px;border:0;border-top:1px solid var(--ln);border-radius:0;background:none;box-shadow:none;text-align:center;font-size:13px;color:var(--mut)}
+.f1{display:flex;justify-content:center;flex-wrap:wrap;gap:0 12px}.f1 b{color:var(--fg);font-family:var(--hd);font-size:15px}
+.f2{display:flex;justify-content:center;flex-wrap:wrap;gap:0 16px}.f2 a{padding:4px 0;color:var(--mut);text-decoration:none}.f2 a:hover{color:var(--ac)}
+.ft .fn{margin:4px 0 0;padding:0;background:none;font-size:12px}
+@media(pointer:coarse){.f2 a{padding:8px 0}}
+/* typography: DM Serif Display (shop name, section titles) + Manrope (everything else) */
+h1,h2,h3,.br,.qn,.f1 b,#sp h1{font-weight:400}
+.br{font-size:20px;letter-spacing:.005em}.cat>h2{font-size:22px;letter-spacing:.005em}
+.hd h3{font-family:var(--bd);font-weight:700;font-size:15px;letter-spacing:-.005em;line-height:1.3}
+.v-list .hd h3{font-size:15px}
+.ds,.v-card .ov p,.v-list .ov p{font-weight:500}
+.pl b,.chs button{font-weight:700}.chs button{font-weight:600;letter-spacing:.005em}
+.pl b,.pl span,.chs small{font-variant-numeric:tabular-nums}
+.tg i{font-weight:700;letter-spacing:.02em}
+/* hover preview (desktop) + details sheet */
+.im{position:relative}.it{cursor:pointer}
+.hv{display:none;position:absolute;inset:0;flex-direction:column;justify-content:flex-end;gap:6px;padding:10px;background:linear-gradient(180deg,rgba(63,42,34,.04) 0%,rgba(63,42,34,.9) 72%);color:#fff7f0;opacity:0;transform:translateY(8px);transition:opacity .25s ease,transform .25s ease;pointer-events:none}
+.hv p{margin:0;font-size:12px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.fv{display:flex;flex-wrap:wrap;gap:4px}.fv i{font:600 10px var(--bd);font-style:normal;padding:2px 7px;border-radius:99px;background:rgba(255,255,255,.2)}
+.ey{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#ffd9e2}
+@media(hover:hover) and (pointer:fine){
+ .v-card .hv{display:flex}
+ .v-card .it{transition:opacity .3s,transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+ .v-card .it:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(63,42,34,.16);border-color:color-mix(in srgb,var(--ac) 30%,var(--ln))}
+ .v-card .it:hover .hv,.v-card .it:focus-visible .hv{opacity:1}
+ .v-card .it:hover .im>.hv,.v-card .it:focus-visible .im>.hv{transform:none}
+ .v-card .it:focus-visible .im>svg,.v-card .it:focus-visible .im>img{transform:scale(1.06)}
+}
+#dp{position:fixed;inset:0;z-index:65;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(40,24,18,.5);backdrop-filter:blur(3px);opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}#dp.open{opacity:1;visibility:visible}
+#dp .sh{position:relative;width:100%;max-width:420px;max-height:calc(100dvh - 32px);overflow:auto;background:var(--sf);border:1px solid var(--ln);border-radius:20px;box-shadow:0 24px 60px rgba(40,24,18,.3);transform:translateY(12px) scale(.98);transition:transform .25s ease}#dp.open .sh{transform:none}
+.dpx{position:absolute;top:10px;right:10px;z-index:2;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:rgba(255,250,245,.94);color:#3f2a22;font-size:22px;line-height:1;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.dpb{padding:16px}.dpb h2{font-size:24px;margin:0 0 6px}.dpb .tg{margin:0 0 8px}.dpd{margin:0 0 4px;font-size:14px;color:var(--mut);white-space:pre-line}
+.dpl{margin:12px 0 6px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+.dpf{display:flex;flex-wrap:wrap;gap:6px}.dpf i{font:600 12px var(--bd);font-style:normal;padding:4px 10px;border-radius:99px;background:var(--bl);color:var(--ac)}
+.dpp{border:1px solid var(--ln);border-radius:12px;overflow:hidden}.dpp div{display:flex;justify-content:space-between;gap:12px;padding:8px 12px;font-size:14px;font-weight:600}.dpp div+div{border-top:1px solid var(--ln)}.dpp b{color:var(--ac);font-variant-numeric:tabular-nums}
+@media(max-width:640px){#dp{align-items:flex-end;padding:0}#dp .sh{max-width:none;max-height:88dvh;border-radius:20px 20px 0 0;border-bottom:0;transform:translateY(100%);padding-bottom:env(safe-area-inset-bottom,0px)}#dp.open .sh{transform:none}}
+@media(prefers-reduced-motion:reduce){.v-card .it:hover,.hv,.v-card .it:hover .im>*,#dp .sh{transform:none!important}}
+/* opening page */
+#sp{overflow:hidden;padding:24px 20px calc(24px + env(safe-area-inset-bottom,0px));background:radial-gradient(110% 70% at 50% -10%,var(--bl) 0%,transparent 62%),radial-gradient(70% 50% at 105% 105%,color-mix(in srgb,var(--ac) 9%,transparent),transparent 65%),var(--bg)}
+#sp::before,#sp::after{content:"";position:absolute;border-radius:50%;pointer-events:none;border:1px solid color-mix(in srgb,var(--ac) 14%,transparent)}
+#sp::before{width:520px;height:520px;top:-220px;left:50%;margin-left:-260px}#sp::after{width:340px;height:340px;bottom:-150px;right:-110px}
+.spc{position:relative;display:flex;flex-direction:column;align-items:center;width:100%;max-width:380px}
+.spl{display:grid;place-items:center;width:84px;height:84px;margin-bottom:20px;border:1px solid var(--ln);border-radius:26px;background:var(--sf);box-shadow:0 12px 32px rgba(63,42,34,.12),0 0 0 8px color-mix(in srgb,var(--bl) 70%,transparent);font-size:42px;overflow:hidden}.spl img{width:100%;height:100%;object-fit:cover}
+.dm{margin-bottom:8px;font-size:11px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--ac)}
+#sp h1{margin:0;font-size:clamp(40px,12vw,64px);line-height:1.05;font-weight:400}
+#sp p{max-width:300px;margin:12px 0 0;font-size:15px;color:var(--mut)}
+.orn{position:relative;display:block;width:72px;height:1px;margin:20px 0;background:linear-gradient(90deg,transparent,var(--ac),transparent)}
+.orn::after{content:"";position:absolute;left:50%;top:-3px;width:6px;height:6px;margin-left:-3px;transform:rotate(45deg);background:var(--ac)}
+.lgw{display:grid;justify-items:center;gap:8px}.pk{font-size:12px;font-weight:600;color:var(--mut)}
+#sp .lg{display:inline-flex;margin:0;padding:4px;gap:2px;border:1px solid var(--ln);border-radius:12px;background:color-mix(in srgb,var(--sf) 85%,transparent)}
+#sp .lg button{height:36px;padding:0 16px;border:0;border-radius:9px;background:none;color:var(--mut);font-size:14px;font-weight:600;transition:background .2s,color .2s}
+#sp .lg button:hover{color:var(--fg)}#sp .lg button[aria-pressed=true]{background:var(--ac);color:var(--acf)}
+#sp .go{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-width:220px;height:52px;margin-top:24px;padding:0 28px;border-radius:14px;background:var(--ac);color:var(--acf);font-size:16px;font-weight:700;box-shadow:0 10px 24px color-mix(in srgb,var(--ac) 32%,transparent);transition:transform .2s,box-shadow .2s}
+#sp .go::after{content:"→";transition:transform .2s}#sp .go:hover{box-shadow:0 14px 30px color-mix(in srgb,var(--ac) 40%,transparent)}#sp .go:hover::after{transform:translateX(4px)}
+#sn{margin-top:20px;font-size:12px;font-weight:600;color:var(--mut)}#sn:empty{display:none}
+.spi{animation:spi .6s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i,0)*70ms)}@keyframes spi{from{opacity:0;transform:translateY(14px)}}
+/* QR modal */
+#qr{display:flex;padding:16px;background:rgba(40,24,18,.5);backdrop-filter:blur(3px);opacity:0;visibility:hidden;transition:opacity .25s ease,visibility .25s}#qr.open{opacity:1;visibility:visible}
+#qr .cd{position:relative;max-width:360px;max-height:calc(100dvh - 32px);overflow:auto;padding:20px 20px 16px;border:1px solid var(--ln);border-radius:20px;background:var(--sf);box-shadow:0 20px 50px rgba(40,24,18,.28);animation:none;transform:translateY(8px) scale(.97);transition:transform .25s ease}#qr.open .cd{transform:none}
+#qr .xb{position:absolute;top:8px;right:8px;width:32px;height:32px;border-radius:8px;background:none;box-shadow:none;color:var(--mut);transition:color .2s,background .2s}#qr .xb:hover{color:var(--fg);background:color-mix(in srgb,var(--fg) 6%,transparent)}
+.xb svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
+#qr .qn{margin:0 0 4px;font:400 15px var(--hd);letter-spacing:.04em;color:var(--ac)}#qr h2{margin:0;font-size:22px;line-height:1.2}#qr p{margin:4px 0 16px;font-size:13px}
+#qc{display:block;width:clamp(168px,min(260px,75vw,calc(100dvh - 380px)),280px);margin:0 auto;padding:16px;border:1px solid var(--ln);border-radius:16px;background:#fff}#qc img,#qc canvas{display:block;width:100%!important;height:auto!important;max-width:none}
+.ur{display:flex;align-items:center;gap:4px;max-width:280px;margin:12px auto 0;padding:4px 4px 4px 12px;border:1px solid var(--ln);border-radius:10px;background:var(--bg)}.ur[hidden]{display:none}
+#ql{flex:1;min-width:0;display:block;text-align:left;font-size:13px;color:var(--fg);text-decoration:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ci{flex:none;width:32px;height:32px;border-radius:8px;display:grid;place-items:center;color:var(--ac);transition:background .2s}.ci:hover{background:var(--bl)}.ci svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.qs{height:16px;margin-top:4px;font-size:12px;font-weight:600;color:var(--ac);opacity:0;transition:opacity .2s}.qs.show{opacity:1}
+#qr .ac{display:grid;gap:8px;margin-top:8px}
+#qr .btn{display:flex;align-items:center;justify-content:center;gap:8px;height:44px;padding:0 12px;border:1px solid var(--ln);border-radius:12px;background:none;color:var(--fg);font-size:14px;font-weight:600;transition:background .2s,border-color .2s,transform .1s,box-shadow .2s}
+#qr .btn svg{flex:none;width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+#qr .btn:hover{background:var(--bl);border-color:color-mix(in srgb,var(--ac) 40%,var(--ln))}#qr .btn:active{transform:scale(.98)}
+#qr .btn.p{height:50px;width:100%;background:var(--ac);border-color:var(--ac);color:var(--acf);font-size:15px}#qr .btn.p:hover{background:color-mix(in srgb,var(--ac) 88%,#000);box-shadow:0 6px 16px color-mix(in srgb,var(--ac) 35%,transparent)}
+#qr .ac2{display:grid;grid-template-columns:1fr 1fr;gap:8px}#qr .ac2 .btn{min-width:0;width:auto}
+
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.it{opacity:1;transform:none}}
 </style></head>
 <body>
-<div id="sp"><div class="em" aria-hidden="true">🎂</div><h1 id="sb"></h1><p id="st"></p><div class="lg" id="slg" role="group" aria-label="Language"></div><button class="go" id="go"></button><small id="sn"></small></div>
-<header><div class="hr"><div class="br" id="hb"></div><div class="rt"><div class="sg" id="hlg" role="group" aria-label="Language"></div><button class="qb" id="qo" aria-label="QR code"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h3M20 17v4"/></svg></button></div></div>
+<div id="sp"><div class="spc"><div class="spl spi" id="spl" style="--i:0" aria-hidden="true">🎂</div><div class="dm spi" id="sdm" style="--i:1"></div><h1 class="spi" id="sb" style="--i:2"></h1><p class="spi" id="st" style="--i:3"></p><i class="orn spi" style="--i:4" aria-hidden="true"></i><div class="lgw spi" style="--i:5"><div class="pk" id="spk"></div><div class="lg" id="slg" role="group" aria-label="Language"></div></div><button class="go spi" id="go" style="--i:6"></button><div class="spi" id="sn" style="--i:7"></div></div></div>
+<header><div class="hr"><div class="br" id="hb"></div><div class="rt"><div class="lw"><button class="lb" id="lb" aria-haspopup="menu" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><span id="lbt"></span><svg class="cv" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="lm" id="lm" role="menu"></div></div><button class="qb" id="qo" aria-label="QR code"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h3M20 17v4"/></svg></button></div></div>
 <div class="tb"><div class="sr"><div class="sw"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" type="search" autocomplete="off" enterkeyhint="search" spellcheck="false"><button id="qz" type="button">✕</button></div><div class="sg" id="vw" role="group" aria-label="View"></div></div><div class="cw" id="cw"><div class="chs" id="ch" role="group"></div></div></div></header>
 <main><div class="hero"><h2 id="h2"></h2><p id="hp"></p></div><div class="rs" id="rs" role="status" aria-live="polite"></div><div id="menu"></div><div class="ft" id="ft"></div></main>
-<a id="wa" target="_blank" rel="noopener"></a>
-<div id="qr" role="dialog" aria-modal="true"><div class="cd"><h2 id="qh"></h2><p id="qp"></p><div id="qc"></div><div class="ac"><button class="p" id="qpr"></button><button id="qcp"></button><button id="qx"></button></div></div></div>
+<div id="qr" role="dialog" aria-modal="true" aria-labelledby="qh"><div class="cd"><button class="xb" id="qx" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div class="qn" id="qn"></div><h2 id="qh"></h2><p id="qp"></p><div id="qc"></div><div class="ur" id="ur"><a id="ql" target="_blank" rel="noopener"></a><button class="ci" id="qci" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg></button></div><div class="qs" id="qs" role="status" aria-live="polite"></div><div class="ac"><button class="btn p" id="qdl" type="button"></button><div class="ac2"><button class="btn" id="qsh" type="button"></button><button class="btn" id="qcp" type="button"></button></div></div></div></div>
+<div id="dp" role="dialog" aria-modal="true" aria-labelledby="dpn"><div class="sh"></div></div>
 <script async src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
 /* ============ EDIT YOUR BUSINESS DETAILS & MENU HERE ============
@@ -167,17 +284,18 @@ let ITEMS=[
 {c:"desserts",img:"",k:"cup",p:[["#3b2012","#f3e3c3","#7a4a30","#f3e3c3"],"cocoa"],t:[],n:{en:"Tiramisu Cup",hi:"तिरामिसु कप",mr:"तिरामिसु कप"},d:{en:"Coffee-soaked layers with mascarpone cream and cocoa.",hi:"कॉफ़ी में भीगी परतें, मस्कारपोन क्रीम और कोको।",mr:"कॉफीत भिजवलेले थर, मस्कारपोन क्रीम आणि कोको."},v:[["1 cup",180]]},
 {c:"desserts",img:"",k:"cup",p:[["#f5b942","#fde39a","#f5b942","#fff1c1"],"mango"],t:["new","eggless"],n:{en:"Mango Mousse Cup",hi:"मैंगो मूस कप",mr:"मँगो मूस कप"},d:{en:"Light, airy mousse made with ripe mango pulp.",hi:"पके आम के गूदे से बना हल्का, मुलायम मूस।",mr:"पिकलेल्या आंब्याच्या गरापासून बनवलेला हलका मूस."},v:[["1 cup",150]]}];
 const T={
-en:{ld:"Loading menu…",lf:"Couldn’t load the menu. Please refresh.",vcard:"Cards",vlist:"List",from:"from {p}",view:"View menu",pick:"Choose your language",tag:"Home-made cakes, cookies & desserts",hello:"Fresh from our home kitchen",sub:"Baked in small batches with real butter, fresh cream and love.",scan:"Opened by scanning a QR code",search:"Search the menu…",all:"All",cakes:"Cakes",cookies:"Cookies",desserts:"Desserts",eggless:"Eggless",best:"Bestseller",new:"New",items:"items",order:"Order on WhatsApp",none:"Nothing matches your search.",wa:"Hello! I’d like to place an order.",total:"Total",qh:"Scan to view our menu",qp:"Point your phone camera at the code to open the menu.",print:"Print",copy:"Copy link",copied:"Copied!",close:"Close",hrs:"Hours",call:"Call",note:"Our kitchen uses milk, wheat, nuts and eggs. Please tell us about any allergies when you order."},
-hi:{ld:"मेन्यू लोड हो रहा है…",lf:"मेन्यू लोड नहीं हो सका। कृपया रीफ़्रेश करें।",vcard:"कार्ड",vlist:"सूची",from:"{p} से शुरू",view:"मेन्यू देखें",pick:"अपनी भाषा चुनें",tag:"घर पर बने केक, कुकीज़ और डेज़र्ट",hello:"हमारी घरेलू रसोई से ताज़ा",sub:"असली मक्खन, ताज़ी क्रीम और प्यार से छोटे बैच में बने।",scan:"QR कोड स्कैन करके खोला गया",search:"मेन्यू में खोजें…",all:"सभी",cakes:"केक",cookies:"कुकीज़",desserts:"डेज़र्ट",eggless:"अंडारहित",best:"बेस्टसेलर",new:"नया",items:"आइटम",order:"WhatsApp पर ऑर्डर करें",none:"आपकी खोज से कुछ नहीं मिला।",wa:"नमस्ते! मैं ऑर्डर देना चाहता/चाहती हूँ।",total:"कुल",qh:"मेन्यू देखने के लिए स्कैन करें",qp:"मेन्यू खोलने के लिए फ़ोन कैमरा कोड पर रखें।",print:"प्रिंट",copy:"लिंक कॉपी करें",copied:"कॉपी हो गया!",close:"बंद करें",hrs:"समय",call:"फ़ोन",note:"हमारी रसोई में दूध, गेहूँ, मेवे और अंडे का उपयोग होता है। ऑर्डर करते समय किसी भी एलर्जी के बारे में बताएँ।"},
-mr:{ld:"मेनू लोड होत आहे…",lf:"मेनू लोड झाला नाही. कृपया रिफ्रेश करा.",vcard:"कार्ड",vlist:"यादी",from:"{p} पासून",view:"मेनू पहा",pick:"तुमची भाषा निवडा",tag:"घरगुती केक, कुकीज आणि डेझर्ट",hello:"आमच्या घरच्या स्वयंपाकघरातून ताजे",sub:"खरे लोणी, ताजी क्रीम आणि प्रेमाने छोट्या बॅचमध्ये बनवलेले.",scan:"QR कोड स्कॅन करून उघडले",search:"मेनूमध्ये शोधा…",all:"सर्व",cakes:"केक",cookies:"कुकीज",desserts:"डेझर्ट",eggless:"अंडेविरहित",best:"बेस्टसेलर",new:"नवीन",items:"आयटम",order:"WhatsApp वर ऑर्डर करा",none:"तुमच्या शोधाशी काहीही जुळले नाही.",wa:"नमस्कार! मला ऑर्डर द्यायची आहे.",total:"एकूण",qh:"मेनू पाहण्यासाठी स्कॅन करा",qp:"मेनू उघडण्यासाठी फोन कॅमेरा कोडकडे धरा.",print:"प्रिंट",copy:"लिंक कॉपी करा",copied:"कॉपी झाले!",close:"बंद करा",hrs:"वेळ",call:"फोन",note:"आमच्या स्वयंपाकघरात दूध, गहू, सुकामेवा आणि अंडी वापरतात. ऑर्डर देताना कोणत्याही ॲलर्जीबद्दल सांगा."}};
+en:{ld:"Loading menu…",lf:"Couldn’t load the menu. Please refresh.",vcard:"Cards",vlist:"List",from:"from {p}",view:"View menu",pick:"Choose your language",tag:"Home-made cakes, cookies & desserts",hello:"Fresh from our home kitchen",sub:"Baked in small batches with real butter, fresh cream and love.",scan:"Opened by scanning a QR code",search:"Search the menu…",all:"All",cakes:"Cakes",cookies:"Cookies",desserts:"Desserts",eggless:"Eggless",best:"Bestseller",new:"New",items:"items",order:"Order on WhatsApp",none:"Nothing matches your search.",wa:"Hello! I’d like to place an order.",total:"Total",qh:"Scan to view our menu",qp:"Point your phone camera at the code to open the menu.",copy:"Copy link",copied:"Copied!",close:"Close",hrs:"Hours",call:"Call",note:"Our kitchen uses milk, wheat, nuts and eggs. Please tell us about any allergies when you order."},
+hi:{ld:"मेन्यू लोड हो रहा है…",lf:"मेन्यू लोड नहीं हो सका। कृपया रीफ़्रेश करें।",vcard:"कार्ड",vlist:"सूची",from:"{p} से शुरू",view:"मेन्यू देखें",pick:"अपनी भाषा चुनें",tag:"घर पर बने केक, कुकीज़ और डेज़र्ट",hello:"हमारी घरेलू रसोई से ताज़ा",sub:"असली मक्खन, ताज़ी क्रीम और प्यार से छोटे बैच में बने।",scan:"QR कोड स्कैन करके खोला गया",search:"मेन्यू में खोजें…",all:"सभी",cakes:"केक",cookies:"कुकीज़",desserts:"डेज़र्ट",eggless:"अंडारहित",best:"बेस्टसेलर",new:"नया",items:"आइटम",order:"WhatsApp पर ऑर्डर करें",none:"आपकी खोज से कुछ नहीं मिला।",wa:"नमस्ते! मैं ऑर्डर देना चाहता/चाहती हूँ।",total:"कुल",qh:"मेन्यू देखने के लिए स्कैन करें",qp:"मेन्यू खोलने के लिए फ़ोन कैमरा कोड पर रखें।",copy:"लिंक कॉपी करें",copied:"कॉपी हो गया!",close:"बंद करें",hrs:"समय",call:"फ़ोन",note:"हमारी रसोई में दूध, गेहूँ, मेवे और अंडे का उपयोग होता है। ऑर्डर करते समय किसी भी एलर्जी के बारे में बताएँ।"},
+mr:{ld:"मेनू लोड होत आहे…",lf:"मेनू लोड झाला नाही. कृपया रिफ्रेश करा.",vcard:"कार्ड",vlist:"यादी",from:"{p} पासून",view:"मेनू पहा",pick:"तुमची भाषा निवडा",tag:"घरगुती केक, कुकीज आणि डेझर्ट",hello:"आमच्या घरच्या स्वयंपाकघरातून ताजे",sub:"खरे लोणी, ताजी क्रीम आणि प्रेमाने छोट्या बॅचमध्ये बनवलेले.",scan:"QR कोड स्कॅन करून उघडले",search:"मेनूमध्ये शोधा…",all:"सर्व",cakes:"केक",cookies:"कुकीज",desserts:"डेझर्ट",eggless:"अंडेविरहित",best:"बेस्टसेलर",new:"नवीन",items:"आयटम",order:"WhatsApp वर ऑर्डर करा",none:"तुमच्या शोधाशी काहीही जुळले नाही.",wa:"नमस्कार! मला ऑर्डर द्यायची आहे.",total:"एकूण",qh:"मेनू पाहण्यासाठी स्कॅन करा",qp:"मेनू उघडण्यासाठी फोन कॅमेरा कोडकडे धरा.",copy:"लिंक कॉपी करा",copied:"कॉपी झाले!",close:"बंद करा",hrs:"वेळ",call:"फोन",note:"आमच्या स्वयंपाकघरात दूध, गहू, सुकामेवा आणि अंडी वापरतात. ऑर्डर देताना कोणत्याही ॲलर्जीबद्दल सांगा."}};
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-let L='en',eg=false,view='card';try{view=localStorage.getItem('view')==='list'?'list':'card'}catch(e){}
+let L='en',eg=false,view='card';try{const v=localStorage.getItem('view');view=v==='list'||v==='card'?v:(matchMedia('(max-width:640px)').matches?'list':'card')}catch(e){}
 try{const s=localStorage.getItem('lang');if(s&&T[s])L=s;else{const n=(navigator.language||'en').slice(0,2);if(T[n])L=n}}catch(e){}
 const tr=()=>T[L];
-Object.assign(T.en,{add:'Order',ordn:"Hello! I'd like to order:",addr:'Address',clear:'Clear',rn:'{n} of {m} items',nh:'Try another word or clear the filters.'});
-Object.assign(T.hi,{add:'ऑर्डर करें',ordn:'नमस्ते! मैं यह ऑर्डर करना चाहता/चाहती हूँ:',addr:'पता',clear:'हटाएँ',rn:'{m} में से {n} आइटम',nh:'दूसरा शब्द आज़माएँ या फ़िल्टर हटाएँ।'});
-Object.assign(T.mr,{add:'ऑर्डर करा',ordn:'नमस्कार! मला हे ऑर्डर करायचे आहे:',addr:'पत्ता',clear:'काढा',rn:'{m} पैकी {n} आयटम',nh:'दुसरा शब्द वापरा किंवा फिल्टर काढा.'});
+Object.assign(T.en,{dm:'Digital Menu',copy:'Copy Link',copied:'Link copied!',qh:'Scan to View Our Menu',qp:'Scan with your phone camera to explore our menu.',fl:'Flavours',sz:'Sizes & prices',vd:'View details',search:'Search cakes and desserts...',note:'Our kitchen uses milk, wheat, nuts and eggs. Please tell us about any allergies.',pastries:'Pastries',cupcakes:'Cupcakes',brownies:'Brownies',beverages:'Beverages',dl:'Download QR',share:'Share',lang:'Language',add:'Order',ordn:"Hello! I'd like to order:",addr:'Address',clear:'Clear',rn:'{n} of {m} items',nh:'Try another word or clear the filters.'});
+Object.assign(T.hi,{dm:'डिजिटल मेन्यू',fl:'फ़्लेवर',sz:'साइज़ और कीमत',vd:'विवरण देखें',search:'केक और डेज़र्ट खोजें...',note:'हमारी रसोई में दूध, गेहूँ, मेवे और अंडे का उपयोग होता है। किसी भी एलर्जी के बारे में हमें बताएँ।',pastries:'पेस्ट्री',cupcakes:'कपकेक',brownies:'ब्राउनी',beverages:'पेय',dl:'QR डाउनलोड करें',share:'शेयर करें',lang:'भाषा',add:'ऑर्डर करें',ordn:'नमस्ते! मैं यह ऑर्डर करना चाहता/चाहती हूँ:',addr:'पता',clear:'हटाएँ',rn:'{m} में से {n} आइटम',nh:'दूसरा शब्द आज़माएँ या फ़िल्टर हटाएँ।'});
+Object.assign(T.mr,{dm:'डिजिटल मेनू',fl:'फ्लेवर',sz:'आकार आणि किंमत',vd:'तपशील पहा',search:'केक आणि डेझर्ट शोधा...',note:'आमच्या स्वयंपाकघरात दूध, गहू, सुकामेवा आणि अंडी वापरतात. कोणत्याही ॲलर्जीबद्दल आम्हाला सांगा.',pastries:'पेस्ट्री',cupcakes:'कपकेक',brownies:'ब्राउनी',beverages:'पेये',dl:'QR डाउनलोड करा',share:'शेअर करा',lang:'भाषा',add:'ऑर्डर करा',ordn:'नमस्कार! मला हे ऑर्डर करायचे आहे:',addr:'पत्ता',clear:'काढा',rn:'{m} पैकी {n} आयटम',nh:'दुसरा शब्द वापरा किंवा फिल्टर काढा.'});
+const CATLAB={},catLabel=c=>tr()[c]||CATLAB[c]||c;
 const fold=x=>String(x).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
 const words=()=>fold($('#q').value.trim()).split(/\s+/).filter(Boolean);
 const hit=i=>{const t=tr(),h=fold([i.n[L],i.n.en,i.d[L],i.c,t[i.c]||'',...i.t.map(x=>t[x]||x),...i.v.map(v=>v[0])].join(' '));return words().every(w=>h.includes(w))&&(!eg||i.t.includes('eggless'))};
@@ -186,25 +304,33 @@ function mark(){$$('#ch [data-c]').forEach(b=>{const o=b.dataset.c==cur;b.classL
 function fade(){const r=$('#ch'),w=$('#cw');w.classList.toggle('l',r.scrollLeft>4);w.classList.toggle('r',r.scrollLeft+r.clientWidth<r.scrollWidth-4)}
 function go(c){cur=c;lock=1;setTimeout(()=>lock=0,800);mark();if(c=='all')scrollTo({top:0,behavior:'smooth'});else{const e=$('#s-'+c);if(e)e.scrollIntoView({behavior:'smooth'})}}
 function chips(){const t=tr(),n={};ITEMS.forEach(i=>{if(hit(i))n[i.c]=(n[i.c]||0)+1});const r=$('#ch'),sc=r.scrollLeft,on=c=>cur==c?' class="on" aria-current="true"':'';
- r.innerHTML=[`<button data-c="all"${on('all')}>${t.all}<small>${Object.values(n).reduce((a,b)=>a+b,0)}</small></button>`,...CATS.map(c=>`<button data-c="${c}"${on(c)}${n[c]?'':' disabled'}>${t[c]||esc(c)}<small>${n[c]||0}</small></button>`),`<span class="sep"></span><button id="eg" aria-pressed="${eg}">🌱 ${t.eggless}</button>`].join('');
+ r.innerHTML=[`<button data-c="all"${on('all')}>${t.all}<small>${Object.values(n).reduce((a,b)=>a+b,0)}</small></button>`,...CATS.map(c=>`<button data-c="${c}"${on(c)}${n[c]?'':' disabled'}>${esc(catLabel(c))}<small>${n[c]||0}</small></button>`),`<span class="sep"></span><button id="eg" aria-pressed="${eg}">🌱 ${t.eggless}</button>`].join('');
  r.scrollLeft=sc;$$('#ch [data-c]').forEach(b=>b.onclick=()=>go(b.dataset.c));$('#eg').onclick=()=>{eg=!eg;render()};fade()}
 function clearAll(){$('#q').value='';eg=false;render()}
-function acts(i){return i.v.length?`<div class="pr">${i.v.map(v=>`<span class="sz">${esc(v[0])}<b>${SHOP.cur}${v[1]}</b></span>`).join('')}</div>`:''}
+function acts(i){return i.v.length?`<div class="pc">${i.v.map(v=>`<div class="pl"><span>${esc(v[0])}</span><b>${SHOP.cur}${v[1]}</b></div>`).join('')}</div>`:''}
+const QI={dl:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg>',sh:'<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>',cp:'<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>'};
+const EYE='<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>';
+function hvp(i){const t=tr(),ie=i.t.includes('eggless'),fl=(i.f||[]).slice(0,4);return`<div class="hv" aria-hidden="true">${i.d[L]?`<p>${esc(i.d[L])}</p>`:''}${ie||fl.length?`<div class="fv">${ie?`<i>🌱 ${t.eggless}</i>`:''}${fl.map(x=>`<i>${esc(x)}</i>`).join('')}</div>`:''}<span class="ey">${EYE}${t.vd}</span></div>`}
+let dpFrom=null;
+function openDetail(n){const i=ITEMS[n];if(!i)return;const t=tr(),pic=imgUrl(i.img)?`<img src="${esc(imgUrl(i.img))}" alt="${esc(i.n[L])}" decoding="async" referrerpolicy="no-referrer" data-n="${n}">`:art(i,'d'+n);
+ $('#dp .sh').innerHTML=`<button class="dpx" id="dpx" aria-label="${t.close}">×</button><div class="im dpi" style="--h:${hu(i.c)}">${pic}</div><div class="dpb"><h2 id="dpn">${esc(i.n[L])}</h2>${i.t.length?`<div class="tg">${i.t.map(x=>`<i class="${x=='eggless'?'eg':''}">${t[x]||esc(x)}</i>`).join('')}</div>`:''}${i.d[L]?`<p class="dpd">${esc(i.d[L])}</p>`:''}${i.f&&i.f.length?`<div class="dpl">${t.fl}</div><div class="dpf">${i.f.map(x=>`<i>${esc(x)}</i>`).join('')}</div>`:''}${i.v.length?`<div class="dpl">${t.sz}</div><div class="dpp">${i.v.map(v=>`<div><span>${esc(v[0])}</span><b>${SHOP.cur}${v[1]}</b></div>`).join('')}</div>`:''}</div>`;
+ dpFrom=document.activeElement;$('#dp').classList.add('open');document.documentElement.style.overflow='hidden';$('#dpx').onclick=closeDetail;$('#dpx').focus({preventScroll:true})}
+function closeDetail(){$('#dp').classList.remove('open');document.documentElement.style.overflow='';if(dpFrom&&dpFrom.focus)dpFrom.focus({preventScroll:true});dpFrom=null}
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{rootMargin:'0px 0px -6% 0px'});
 let cur='all',lock=0;
 const spy=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&!lock&&scrollY>120){cur=e.target.id.slice(2);mark()}}),{rootMargin:'-40% 0px -55% 0px'});
 
-function langBtns(el){el.innerHTML=LANGS.map(l=>`<button data-l="${l[0]}" aria-pressed="${l[0]==L}" lang="${l[0]}">${l[1]}</button>`).join('');$$('button',el).forEach(b=>b.onclick=()=>setLang(b.dataset.l))}
+function langBtns(el){if(!el)return;el.innerHTML=LANGS.map(l=>`<button data-l="${l[0]}" aria-pressed="${l[0]==L}" lang="${l[0]}">${l[1]}</button>`).join('');$$('button',el).forEach(b=>b.onclick=()=>setLang(b.dataset.l))}
 function setLang(l){L=l;try{localStorage.setItem('lang',l)}catch(e){}ui();render()}
 function viewBtns(){$('#vw').innerHTML=['card','list'].map(v=>`<button data-v="${v}" aria-pressed="${v==view}" aria-label="${tr()['v'+v]}">${v=='card'?'▦':'☰'}<span class="vl"> ${tr()['v'+v]}</span></button>`).join('');$$('#vw button').forEach(b=>b.onclick=()=>{view=b.dataset.v;try{localStorage.setItem('view',view)}catch(e){}viewBtns();render()})}
 function ui(){const t=tr();document.documentElement.lang=L;document.title=`${SHOP.name[L]} — ${t.tag}`;
- $('#sb').textContent=SHOP.name[L];$('#st').textContent=t.tag;$('#go').textContent=t.view;$('#sn').textContent=t.scan;
- $('#hb').innerHTML=`${esc(SHOP.name[L])}<span>.</span>`;$('#q').placeholder=t.search;$('#q').setAttribute('aria-label',t.search);
- $('#h2').textContent=t.hello;$('#hp').textContent=t.sub;langBtns($('#slg'));langBtns($('#hlg'));viewBtns();
+ [['#sb',SHOP.name[L]],['#st',t.tag],['#go',t.view],['#sn',SHOP.hours[L]],['#sdm',t.dm],['#spk',t.pick]].forEach(([i,v])=>{const e=$(i);if(e)e.textContent=v});{const e=$('#spl'),g=SHOP.logo||'🎂';if(e)e.innerHTML=/^(https?:|data:)/.test(g)?`<img src="${esc(g)}" alt="">`:esc(g)}
+ {const g=SHOP.logo||'🎂';$('#hb').innerHTML=`<i class="lo" aria-hidden="true">${/^(https?:|data:)/.test(g)?`<img src="${esc(g)}" alt="">`:esc(g)}</i><span class="bn">${esc(SHOP.name[L])}</span>`}$('#q').placeholder=t.search;$('#q').setAttribute('aria-label',t.search);
+ $('#h2').textContent=t.hello;$('#hp').textContent=t.sub;langBtns($('#slg'));langMenu();viewBtns();
  $('#qz').setAttribute('aria-label',t.clear);
- const ic=p=>`<svg viewBox="0 0 24 24" aria-hidden="true">${p}</svg>`,ph=esc(SHOP.phone.replace(/\s/g,'')),ig=SHOP.instagram?(/^http/.test(SHOP.instagram)?SHOP.instagram:'https://instagram.com/'+SHOP.instagram.replace('@','')):'';
- $('#ft').innerHTML=`<div class="fb">${esc(SHOP.name[L])}<span>.</span></div><p class="ftg">${t.tag}</p><ul class="fl"><li>${ic('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>')}<div><small>${t.hrs}</small>${esc(SHOP.hours[L])}</div></li><li>${ic('<path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/>')}<div><small>${t.addr}</small><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(SHOP.address[L])}" target="_blank" rel="noopener">${esc(SHOP.address[L])}</a></div></li><li>${ic('<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/>')}<div><small>${t.call}</small><a href="tel:${ph}">${esc(SHOP.phone)}</a></div></li></ul><div class="fa"><a class="p" href="tel:${ph}">${t.call}</a>${ig?`<a href="${esc(ig)}" target="_blank" rel="noopener">Instagram</a>`:''}</div><p class="fn">${t.note}</p><p class="cp">© ${new Date().getFullYear()} ${esc(SHOP.name[L])}</p>`;
- $('#qh').textContent=t.qh;$('#qp').textContent=t.qp;$('#qpr').textContent=t.print;$('#qcp').textContent=t.copy;$('#qx').textContent=t.close;const w=$('#wa');w.textContent='💬 '+t.order;w.href=`https://wa.me/${SHOP.whatsapp}?text=${encodeURIComponent(t.wa)}`}
+ const ph=esc(SHOP.phone.replace(/\s/g,'')),ig=SHOP.instagram?(/^http/.test(SHOP.instagram)?SHOP.instagram:'https://instagram.com/'+SHOP.instagram.replace('@','')):'',mp='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(SHOP.address[L]);
+ $('#ft').innerHTML=`<div class="f1"><b>${esc(SHOP.name[L])}</b><span>${esc(SHOP.hours[L])}</span></div><div class="f2"><a href="${mp}" target="_blank" rel="noopener">${esc(SHOP.address[L])}</a><a href="tel:${ph}">${esc(SHOP.phone)}</a>${ig?`<a href="${esc(ig)}" target="_blank" rel="noopener">Instagram</a>`:''}</div><p class="fn">${t.note}</p>`;
+ $('#qh').textContent=t.qh;$('#qp').textContent=t.qp;$('#qx').setAttribute('aria-label',t.close);$('#qci').setAttribute('aria-label',t.copy);$('#qdl').innerHTML=QI.dl+'<span>'+t.dl+'</span>';$('#qsh').innerHTML=QI.sh+'<span>'+t.share+'</span>';$('#qcp').innerHTML=QI.cp+'<span>'+t.copy+'</span>';$('#qn').textContent=SHOP.name[L];}
 const hu=c=>HUE[c]??([...c].reduce((a,x)=>a+x.charCodeAt(0)*37,0)%360);
 /* Google Drive share links (…/file/d/ID/view, open?id=ID, uc?id=ID) become direct picture links; any other http(s) link or file path is used as is. */
 const imgUrl=u=>{u=(u||'').trim();if(!u)return'';const m=u.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:[^#]*&)?id=|thumbnail\?(?:[^#]*&)?id=)([\w-]{10,})/)||u.match(/docs\.google\.com\/.*?\/d\/([\w-]{10,})/);return m?`https://drive.google.com/thumbnail?id=${m[1]}&sz=w640`:u};
@@ -225,7 +351,7 @@ function art(i,n){const p=i.p;let b=PL;
  return sv(b)}
 function render(){const t=tr(),q=$('#q').value.trim();$('#menu').className='v-'+view;$('.hero').style.display=q?'none':'';$('.sw').classList.toggle('has',!!q);
  const h=CATS.map(c=>{const its=ITEMS.filter(i=>i.c==c&&hit(i));
-  return its.length?`<section class="cat" id="s-${c}"><h2>${t[c]||esc(c)}<small>${its.length} ${t.items}</small></h2><div class="gr">${its.map(i=>{const n=ITEMS.indexOf(i);return`<article class="it" data-n="${n}"><div class="im" style="--h:${hu(c)}">${imgUrl(i.img)?`<img src="${esc(imgUrl(i.img))}" alt="${esc(i.n[L])}" ${n<4?'fetchpriority="high"':'loading="lazy"'} decoding="async" referrerpolicy="no-referrer" data-n="${n}">`:art(i,n)}</div><div class="cn"><div class="hd"><h3>${hl(i.n[L])}</h3><span class="fr">${t.from.replace('{p}',SHOP.cur+Math.min(...i.v.map(v=>v[1])))}</span></div><div class="ov"><div class="tg">${i.t.map(x=>`<i class="${x=='eggless'?'eg':''}">${t[x]||esc(x)}</i>`).join('')}</div><p>${esc(i.d[L])}</p>${acts(i,n)}</div></div></article>`}).join('')}</div></section>`:''}).join('');
+  return its.length?`<section class="cat" id="s-${c}"><h2>${esc(catLabel(c))}<small>${its.length} ${t.items}</small></h2><div class="gr">${its.map(i=>{const n=ITEMS.indexOf(i);return`<article class="it" data-n="${n}" tabindex="0" aria-haspopup="dialog"><div class="im" style="--h:${hu(c)}">${imgUrl(i.img)?`<img src="${esc(imgUrl(i.img))}" alt="${esc(i.n[L])}" ${n<4?'fetchpriority="high"':'loading="lazy"'} decoding="async" referrerpolicy="no-referrer" data-n="${n}">`:art(i,n)}${hvp(i)}</div><div class="cn"><div class="hd"><h3>${hl(i.n[L])}</h3><span class="fr">${t.from.replace('{p}',SHOP.cur+Math.min(...i.v.map(v=>v[1])))}</span></div><div class="ov"><div class="tg">${i.t.map(x=>`<i class="${x=='eggless'?'eg':''}">${t[x]||esc(x)}</i>`).join('')}</div><p>${esc(i.d[L])}</p>${acts(i,n)}</div></div></article>`}).join('')}</div></section>`:''}).join('');
  if(!h&&state=='ld'){$('#menu').innerHTML='<div class="sk" aria-busy="true" aria-label="'+t.ld+'">'+'<div class="skc"><i></i><b></b><b></b></div>'.repeat(6)+'</div>';$('#rs').innerHTML='';chips();return}
  $('#menu').innerHTML=h||`<div class="none">${state?t[state]:t.none+'<small>'+t.nh+'</small><button class="bt" id="clr">'+t.clear+'</button>'}${state=='lf'&&location.search.includes('debug')?'<br><small>'+esc(dbg)+'</small>':''}</div>`;$$('.it').forEach(e=>io.observe(e));$$('.cat').forEach(e=>spy.observe(e));
  const n=ITEMS.filter(hit).length;$('#rs').innerHTML=(q||eg)&&n?`<span>${t.rn.replace('{n}',n).replace('{m}',ITEMS.length)}</span><button id="clr">${t.clear}</button>`:'';
@@ -236,19 +362,40 @@ $('#qz').onclick=()=>{clearAll();$('#q').focus()};
 $('#ch').addEventListener('scroll',fade,{passive:true});addEventListener('resize',fade);
 addEventListener('scroll',()=>{if(!lock&&scrollY<=120&&cur!='all'){cur='all';mark()}},{passive:true});
 new ResizeObserver(()=>document.documentElement.style.setProperty('--hh',$('header').offsetHeight+'px')).observe($('header'));
-$('#menu').addEventListener('click',e=>{const a=e.target.closest('.it');if(a&&matchMedia('(hover:none)').matches){$$('.it.open').forEach(x=>x!=a&&x.classList.remove('open'));a.classList.toggle('open')}});
+$('#menu').addEventListener('click',e=>{const a=e.target.closest('.it');if(a)openDetail(+a.dataset.n)});
+$('#menu').addEventListener('keydown',e=>{const a=e.target;if((e.key=='Enter'||e.key==' ')&&a.classList&&a.classList.contains('it')){e.preventDefault();openDetail(+a.dataset.n)}});
+$('#dp').onclick=e=>{if(e.target.id=='dp')closeDetail()};
+$('#dp').addEventListener('keydown',e=>{if(e.key=='Tab'){e.preventDefault();$('#dpx').focus()}});
 addEventListener('load',e=>{if(e.target.tagName=='IMG')e.target.classList.add('ld')},true);
 /* if a photo fails to load, fall back to the illustration */
 addEventListener('error',e=>{const m=e.target;if(m.tagName=='IMG'&&m.dataset.n){const w=document.createElement('div');w.innerHTML=art(ITEMS[+m.dataset.n],+m.dataset.n);m.replaceWith(w.firstChild)}},true);
 /* splash */
 $('#go').onclick=()=>{$('#sp').classList.add('out');setTimeout(()=>$('#sp').remove(),900)};
 /* QR */
+function langMenu(){const m=$('#lm');$('#lbt').textContent=LANGS.find(l=>l[0]==L)[1];$('#lb').setAttribute('aria-label',tr().lang);m.innerHTML=LANGS.map(l=>`<button role="menuitemradio" aria-checked="${l[0]==L}" data-l="${l[0]}" lang="${l[0]}"><span>${l[1]}</span><span>${l[0]==L?'✓':''}</span></button>`).join('');$$('button',m).forEach(b=>b.onclick=()=>{closeLm();setLang(b.dataset.l)})}
+function closeLm(){$('#lm').classList.remove('open');$('#lb').setAttribute('aria-expanded','false')}
+$('#lb').onclick=e=>{e.stopPropagation();const o=$('#lm').classList.toggle('open');$('#lb').setAttribute('aria-expanded',o);if(o)setTimeout(()=>($('#lm [aria-checked=true]')||$('#lm button')).focus(),0)};
+$('#lm').addEventListener('keydown',e=>{const b=$$('button',$('#lm')),i=b.indexOf(document.activeElement);if(e.key=='ArrowDown'){e.preventDefault();b[(i+1)%b.length].focus()}else if(e.key=='ArrowUp'){e.preventDefault();b[(i-1+b.length)%b.length].focus()}else if(e.key=='Escape'){closeLm();$('#lb').focus()}});
+document.addEventListener('click',closeLm);
+const SITE_URL="https://digvijay176.github.io/menu/"; /* public menu link used by the QR code, Share and Copy Link */
+const siteUrl=()=>SITE_URL||location.href.split('#')[0];
 let qrd=0;
-$('#qo').onclick=()=>{$('#qr').style.display='flex';if(!qrd){qrd=1;try{new QRCode($('#qc'),{text:location.href.split('#')[0],width:240,height:240,colorDark:'#3b2418',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M})}catch(e){$('#qc').textContent=location.href}}$('#qx').focus()};
-const qx=()=>$('#qr').style.display='none';$('#qx').onclick=qx;$('#qr').onclick=e=>{if(e.target.id=='qr')qx()};
-addEventListener('keydown',e=>{if(e.key=='Escape')qx()});
-$('#qpr').onclick=()=>print();
-$('#qcp').onclick=async()=>{try{await navigator.clipboard.writeText(location.href.split('#')[0]);const b=$('#qcp'),o=b.textContent;b.textContent=tr().copied;setTimeout(()=>b.textContent=o,1600)}catch(e){}};
+function qrMake(){$('#qc').textContent='';try{new QRCode($('#qc'),{text:siteUrl(),width:256,height:256,colorDark:'#3b2418',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M});qrd=1}catch(e){$('#qc').textContent=siteUrl();qrd=0}}
+let qrFrom=null;
+$('#qo').onclick=()=>{qrFrom=document.activeElement;$('#qr').classList.add('open');if(!qrd)qrMake();const u=siteUrl(),l=$('#ql'),ok=/^https?:/.test(u);$('#ur').hidden=!ok;l.href=ok?u:'#';l.textContent=u.replace(/^https?:\/\//,'').replace(/\/$/,'');$('#qs').classList.remove('show');$('#qx').focus({preventScroll:true})};
+const qx=()=>{$('#qr').classList.remove('open');if(qrFrom&&qrFrom.focus){qrFrom.focus({preventScroll:true});qrFrom=null}};$('#qx').onclick=qx;$('#qr').onclick=e=>{if(e.target.id=='qr')qx()};
+addEventListener('keydown',e=>{if(e.key=='Escape'){qx();closeLm();if($('#dp').classList.contains('open'))closeDetail()}});
+$('#qr').addEventListener('keydown',e=>{if(e.key!='Tab')return;const f=$$('button:not([hidden]),a[href]',$('#qr .cd')).filter(x=>x.offsetParent);if(!f.length)return;const a=f[0],z=f[f.length-1];if(e.shiftKey&&document.activeElement==a){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement==z){e.preventDefault();a.focus()}});
+function qrPng(){const s=$('#qc canvas')||$('#qc img');if(!s)return'';const W=1000,H=1240,c=document.createElement('canvas');c.width=W;c.height=H;const x=c.getContext('2d'),t=tr();
+ x.fillStyle='#fff';x.fillRect(0,0,W,H);x.textAlign='center';x.fillStyle='#3b2418';x.font='400 64px "DM Serif Display",Georgia,serif';x.fillText(SHOP.name[L],W/2,130,W-120);
+ x.imageSmoothingEnabled=false;x.drawImage(s,120,200,760,760);
+ x.font='500 38px system-ui,sans-serif';x.fillText(t.qh,W/2,1060,W-120);x.fillStyle='#8a6f60';x.font='400 28px system-ui,sans-serif';x.fillText(siteUrl().replace(/^https?:\/\//,''),W/2,1120,W-120);
+ try{return c.toDataURL('image/png')}catch(e){return''}}
+$('#qdl').onclick=()=>{if(!qrd)qrMake();const u=qrPng();if(!u)return;const a=document.createElement('a');a.href=u;a.download='menu-qr.png';document.body.appendChild(a);a.click();a.remove()};
+$('#qsh').onclick=async()=>{if(navigator.share){try{await navigator.share({title:SHOP.name[L],text:tr().qh,url:siteUrl()})}catch(e){}}else copyLink()};
+async function copyLink(){const u=siteUrl();let ok=0;try{await navigator.clipboard.writeText(u);ok=1}catch(e){try{const a=document.createElement('textarea');a.value=u;a.style.cssText='position:fixed;opacity:0';document.body.appendChild(a);a.select();ok=document.execCommand('copy');a.remove()}catch(e2){}}
+ if(ok){const m=$('#qs');m.textContent=tr().copied;m.classList.add('show');clearTimeout(copyLink.t);copyLink.t=setTimeout(()=>m.classList.remove('show'),1800)}}
+$('#qcp').onclick=copyLink;$('#qci').onclick=copyLink;
 const LIVE=SOURCES.sheetId||SOURCES.menu;let state=LIVE?'ld':'',dbg='';if(LIVE){ITEMS=[];CATS=[]}
 ui();render();
 /* ===== LIVE DATA FROM GOOGLE SHEETS ===== */
@@ -274,7 +421,7 @@ let sig='';
 function apply(tb,key){
  if(tb.settings){const S={};tb.settings.slice(1).forEach(r=>S[norm(r[0])]=(r[1]||'').trim());
   LANGS.forEach(([l])=>{if(S['name_'+l])SHOP.name[l]=S['name_'+l];if(S['hours_'+l])SHOP.hours[l]=S['hours_'+l];if(S['address_'+l])SHOP.address[l]=S['address_'+l]});
-  if(S.whatsapp)SHOP.whatsapp=S.whatsapp.replace(/\D/g,'');if(S.phone)SHOP.phone=S.phone;if(S.currency)SHOP.cur=S.currency}
+  if(S.whatsapp)SHOP.whatsapp=S.whatsapp.replace(/\D/g,'');if(S.phone)SHOP.phone=S.phone;if(S.currency)SHOP.cur=S.currency;if(S.logo)SHOP.logo=S.logo}
  if(tb.theme){const T2={};tb.theme.forEach(r=>{const k=norm(r[0]);if(k)T2[k]=r.slice(1).map(x=>(x||'').trim())});
   const KS=['bg','surface','text','muted','line','accent','accent_text'],M={bg:'--bg',surface:'--sf',text:'--fg',muted:'--mut',line:'--ln',accent:'--ac',accent_text:'--acf'},ok=x=>/^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(x||'');
   const pn=norm((T2.selected_palette||[])[0]),pr=pn&&(tb.palettes||[]).find(r=>norm(r[0])==pn);
@@ -286,7 +433,7 @@ function apply(tb,key){
  const items=rows.slice(1).filter(r=>r.some(x=>String(x).trim())&&yes(r[ix('show')])).map(r=>{const g=n=>ix(n)<0?'':String(r[ix(n)]||'').trim(),v=[];
   for(let k=1;k<=3;k++){const z=g('size_'+k),p=parseFloat(g('price_'+k));if(z&&p>=0)v.push([z,p])}
   const lk=LOOK[g('look')]||LOOK['chip-cookie'],en=g('name_english'),de=g('description_english');
-  return{c:norm(g('category'))||'menu',img:g('image_url'),k:lk[0],p:lk[1],t:g('tags').split(/[,;]/).map(norm).filter(Boolean).map(x=>x=='bestseller'?'best':x),
+  const rc=g('category'),ck=norm(rc)||'menu';if(!CATLAB[ck])CATLAB[ck]=rc||'Menu';return{c:ck,f:(g('flavours')||g('flavors')).split(/[,;]/).map(x=>x.trim()).filter(Boolean),img:g('image_url'),k:lk[0],p:lk[1],t:g('tags').split(/[,;]/).map(norm).filter(Boolean).map(x=>x=='bestseller'?'best':x),
    n:{en,hi:g('name_hindi')||en,mr:g('name_marathi')||en},d:{en:de,hi:g('description_hindi')||de,mr:g('description_marathi')||de},v}});
  sig=key;state='';ITEMS=items;CATS=[...new Set(items.map(i=>i.c))];ui();render()}
 async function sync(){try{
